@@ -1,3 +1,8 @@
+- name: ophelia
+  url:  
+  desc: she's my gf
+  image:  https://d-sketon.github.io/avatar/avatar.webp
+
 - name: shiro
   url: https://github.com/minyellc2
   desc: 
