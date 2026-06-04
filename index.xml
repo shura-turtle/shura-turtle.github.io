@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shura-turtle</title>
+    <link>http://localhost:1313/algolia.json</link>
+    <description>Recent content from shura-turtle</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    
+    <managingEditor>xxx@xxx.com (shura-turtle)</managingEditor>
+    <webMaster>xxx@xxx.com (shura-turtle)</webMaster>
+    
+    <copyright>All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!</copyright>
+    
+    <lastBuildDate>Thu, 04 Jun 2026 13:14:01 +0630</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Overflow1</title>
+      <link>http://localhost:1313/post/overflow1/</link>
+      <pubDate>Thu, 04 Jun 2026 13:14:01 &#43;0630</pubDate>
+      <author>xxx@xxx.com (shura-turtle)</author>
+      <guid>http://localhost:1313/post/overflow1/</guid>
+      <description>
+        <![CDATA[<h1>Overflow1</h1><p>Author: shura-turtle(xxx@xxx.com)</p>
+        
+          <blockquote>
+<p>overflowme1 ကို ida pro နဲ့ analyse တဲ့အခါမှာ</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="kr">__fastcall</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">_BYTE</span> <span class="n">v4</span><span class="p">[</span><span class="mi">23</span><span class="p">];</span> <span class="c1">// [rsp+0h] [rbp-30h] BYREF
+</span></span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">v5</span><span class="p">;</span> <span class="c1">// [rsp+17h] [rbp-19h]
+</span></span></span><span class="line"><span class="cl">  <span class="n">FILE</span> <span class="o">*</span><span class="n">stream</span><span class="p">;</span> <span class="c1">// [rsp+18h] [rbp-18h]
+</span></span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">;</span> <span class="c1">// [rsp+20h] [rbp-10h]
+</span></span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">v8</span><span class="p">;</span> <span class="c1">// [rsp+2Ch] [rbp-4h]
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">setup</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">envp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">banner</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v8</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Please go ahead and leave a comment :&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">v4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">v8</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Bye bye</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">filename</span> <span class="o">=</span> <span class="s">&#34;flag.txt&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stream</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span> <span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v5</span> <span class="o">=</span> <span class="nf">fgetc</span><span class="p">(</span><span class="n">stream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">v5</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">putchar</span><span class="p">(</span><span class="n">v5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fclose</span><span class="p">(</span><span class="n">stream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>ဒီမှာဆိုရင် gets(v4) -&gt; v4 က [23] byte accept ပြီး အဲ့ထက်ကျော်အောင်ရေးလို့ရတယ် size check မပါလို့ အဲ့ကြောင်း buffer overflow ဖြစ်တယ်</p>
+        
+        <hr><p>Published on 2026-06-04 at <a href='http://localhost:1313/'>shura-turtle</a>, last modified on 2026-06-04</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>
