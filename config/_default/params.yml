@@ -7,16 +7,16 @@
 menu:
   - name: home
     url: ""
-    icon: # default use taichi icon, you can use a hexadecimal representation of fontawesome or icon_font, like 'f0c1'
+    icon: e64b
   - name: archives
     url: "archives"
-    icon:
+    icon: e612
   - name: about
     url: "about"
-    icon:
+    icon: e610
   - name: friend
     url: "friend"
-    icon:
+    icon: e628
 
 mainSections: ["post"]
 # 年，月，日及时间的格式化样式
@@ -26,8 +26,8 @@ monthFormat: "2006-01"
 dateFormat: "2006-01-02"
 timeFormat: "2006-01-02 15:04:05"
 
-author: D-Sketon
-email: xxx@example.com
+author: shura-turtle
+email: xxx@xxx.com
 description: "少女祈祷中..."
 # subtitle: "少女祈祷中..."
 subtitle:
@@ -49,19 +49,22 @@ subtitle:
     smartBackspace: false       # 智能退格，只删除不同的部分
   text: "少女祈祷中..."        # 当 typing.enable = false 时使用
 
-banner: "images/banner.webp"
-# You can also write it in the form of the following url
-# banner: "https://example.com"
+# Single fallback banner. Path is relative to the site root (static/),
+# so "images/covers/bg1.webp" -> static/images/covers/bg1.webp -> /images/covers/bg1.webp
+banner: "images/covers/bg20.webp"
+# You can also use a full external URL (must be a direct image URL, not a webpage):
+# banner: "https://example.com/banner.webp"
 
-# If you want to use the srcset attribute, please enable it
+# Responsive banner: the browser picks the image whose media query matches.
+# Falls back to `banner` above if none match. Using your real cover files as an example.
 banner_srcset:
-  enable: false
+  enable: true
   srcset:
-    - src: "images/banner-600w.webp"
+    - src: "images/covers/bg5.webp"        # phones
       media: "(max-width: 479px)"
-    - src: "images/banner-800w.webp"
+    - src: "images/covers/bg10.webp"       # tablets
       media: "(max-width: 799px)"
-    - src: "images/banner.webp"
+    - src: "images/covers/bg20.webp"        # desktop
       media: "(min-width: 800px)"
 
 avatar: "avatar.webp"
@@ -102,10 +105,10 @@ copyright:
 #   All website licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></div>
 
 footer:
-  since: 2020 # 2020-current year
-  powered: true
-  count: true
-  busuanzi: true
+  since: 2025 # 2020-current year
+  powered: false
+  count: false
+  busuanzi: false
   icon:
     url: "../images/taichi.png" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
     rotate: true
@@ -120,8 +123,7 @@ sidebar:
     show_common: true # whether to show common sidebar, ignored on mobile devices
 
 social:
-  # email: mailto:xxx@gmail.com
-  # github: https://github.com/yourname
+  github: https://github.com/shura-turtle
   # google: https://plus.google.com/yourname
   # twitter: https://twitter.com/yourname
   # bluesky: https://bsky.app/profile/yourname
@@ -143,7 +145,7 @@ social:
   # deviantart: https://yourname.deviantart.com
   # stackoverflow: https://stackoverflow.com/users/yourname
   # keybase: https://keybase.io/yourname
-  # telegram: https://t.me/yourname
+  telegram: https://t.me/ccckenshin
   # discord: https://discordapp.com/users/yourname
   # steam: https://steamcommunity.com/id/yourname
   # weixin: 
@@ -497,7 +499,7 @@ preloader:
     en: Loading...
     ja: 少女祈祷中...
     pt-BR: Carregando...
-  icon: # default use inline svg for fast speed, you can use a image url, like '/images/taichi.png'
+  icon:   
   rotate: true # whether to rotate the icon
 
 # see https://github.com/D-Sketon/aos.js
@@ -621,7 +623,8 @@ sponsor:
 # Share
 share:
   # - facebook
-  # - twitter
+  # - qq
+  # - telegram
   # - bluesky
   # - linkedin
   # - reddit
@@ -642,19 +645,6 @@ home_categories:
 # Experimental features
 ########################################
 
-# Inject code snippet
-# Make sure your code snippet is safeHTML
-injector:
-  head_begin: # Inject code snippet right after <head>
-  head_end: # Inject code snippet right before </head>
-  body_begin: # Inject code snippet right after <body>
-  body_end: # Inject code snippet right before </body>
-  sidebar_begin: # Inject code snippet right after <aside>
-  sidebar_end: # Inject code snippet right before </aside>
-
-# Experimental, may have a lot of bugs, open with caution!
-pjax:
-  enable: false
 
 # Experimental
 # https://github.com/GoogleChromeLabs/quicklink
@@ -740,16 +730,17 @@ material_theme:
 
 internal_theme:
   light:
-    --red-0: '#ff0000'
-    --red-1: '#ff5252'
-    --red-2: '#ff7c7c'
-    --red-3: '#ffafaf'
-    --red-4: '#ffd0d0'
-    --red-5: '#ffecec'
-    --red-5-5: '#fff3f3'
-    --red-6: '#fff7f7'
-    --color-red-6-shadow: 'rgba(255, 78, 78, 0.6)'
-    --color-red-3-shadow: 'rgba(255, 78, 78, 0.3)'
+    # Ocean blue scheme
+    --red-0: '#0077b6'   # strong accent (links, heat-map peak)
+    --red-1: '#0096d6'   # main accent (links, headings)
+    --red-2: '#48b5e0'   # secondary accent
+    --red-3: '#90d4ec'   # borders
+    --red-4: '#c0e7f5'   # soft fills
+    --red-5: '#e3f4fb'   # background tint
+    --red-5-5: '#f0f9fd'
+    --red-6: '#f7fcfe'   # faint background
+    --color-red-6-shadow: 'rgba(0, 150, 214, 0.9)'   # ocean-blue glow
+    --color-red-3-shadow: 'rgba(0, 150, 214, 0.6)'
 
     --highlight-nav: "#f5f5f5"
     --highlight-scrollbar: "#d6d6d6"
@@ -769,10 +760,10 @@ internal_theme:
     --highlight-addition: "#22863a"
     --highlight-addition-bg: "#f0fff4"
   dark:
-    --red-4: 'rgba(255, 208, 208, 0.5)'
-    --red-5: 'rgba(255,228,228,0.15)'
-    --red-5-5: 'rgba(255,236,236,0.05)'
-    --red-6: 'rgba(255, 243, 243, 0.2)'
+    --red-4: 'rgba(144, 212, 236, 0.5)'
+    --red-5: 'rgba(72, 181, 224, 0.15)'
+    --red-5-5: 'rgba(72, 181, 224, 0.05)'
+    --red-6: 'rgba(144, 212, 236, 0.2)'
 
     --highlight-nav: "#222830"
     --highlight-scrollbar: "#454d59"
