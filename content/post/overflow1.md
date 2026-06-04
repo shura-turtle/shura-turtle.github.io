@@ -5,6 +5,11 @@ title = 'Overflow1'
 cover = '/images/covers/bg26.webp'
 +++
 
+# challenge file 
+[overflowme1](https://github.com/shura-turtle/educational-1)
+
+## Analysis
+
 > overflowme1 ကို ida pro နဲ့ analyse တဲ့အခါမှာ 
 
 
@@ -44,6 +49,8 @@ int __fastcall main(int argc, const char **argv, const char **envp)
 ဒီမှာဆိုရင် gets(v4) -> v4 က [23] byte accept ပြီး အဲ့ထက်ကျော်အောင်ရေးလို့ရတယ် size check မပါလို့ အဲ့ကြောင်း buffer overflow ဖြစ်တယ် 
 
 v8 ကို ချိန်းနိုင်လိုက်တာနဲ့ flag ရမယ် အဲ့ဒီတော့ 
+
+## Exploit 
 
 > payload = aaaaaaaabaaaaaaacaaaaaaadaaaaaaaabaaaaaaacaaaaaaad
 > boom!!! got flag -> [+] gh0st69
