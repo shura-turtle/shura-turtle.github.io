@@ -1,8 +1,24 @@
-- name: D-Sketon
-  url: https://d-sketon.github.io/
-  desc: Hexo 建站
-  image: https://d-sketon.github.io/avatar/avatar.webp
-- name: D-Sketon
-  url: https://d-sketon.github.io/astro-theme-reimu/
-  desc: Astro 建站
-  image: https://d-sketon.github.io/avatar/avatar.webp
+- name: shiro
+  url: https://github.com/minyellc2
+  desc: 
+  image: /images/friends/minyellc2.jpg
+
+- name: madara
+  url: https://github.com/zayarht3t
+  desc: 
+  image:  /images/friends/linux.jpg
+
+- name: b1itzkri3g
+  url:
+  desc: 
+  image: /images/friends/b1itzkri3g.jpg
+
+- name: kaung min myatt
+  url: 
+  desc: 
+  image: /images/friends/kaung.jpg
+
+- name: kwee choke
+  url: 
+  desc: 
+  image: /images/friends/kweechoke.jpg
