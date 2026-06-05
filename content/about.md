@@ -1,9 +1,11 @@
----
-title: 关于
-description: 关于
++++
+date = '2026-06-05T07:32:38+06:30'
+draft = false
+title = 'About'
++++
 
-date: 2026-06-09T20:12:52+08:00
-lastmod: 2026-06-09T20:12:52+08:00
----
+> whoami -> just a script kiddie
 
-just a script kiddie
+```c
+return 0x404;
+```
