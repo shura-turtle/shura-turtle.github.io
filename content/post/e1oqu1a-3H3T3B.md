@@ -73,7 +73,7 @@ create new article option ကို တစ်ချက်ကြည့်ပါ�
 
 ![image](/images/eloquia/6.png)
 
-boom! html injection worked ဖြစ်သွားပါတယ် အဲ့လိုနဲ့ htb box တွေမှာဆိုရင် သူတို့မှာ trigger bot တွေရှိပါတယ် bot တွေနဲ့ လုပ်ရတာသဘောကျတာမျိုးပေါ့ သူတို့က အဲ့ဒီတော့ ကျနော်လိုက်ရှာတဲ့ချိန်မှာ report article ဆိုတဲ့ဟာနဲ့ bot trigger ဖြစ်မဖြစ် html injection နဲ့အရင်စမ်းကြတာပေါ့
+html injection worked ဖြစ်သွားပါတယ် အဲ့လိုနဲ့ htb box တွေမှာဆိုရင် သူတို့မှာ trigger bot တွေရှိပါတယ် bot တွေနဲ့ လုပ်ရတာသဘောကျတာမျိုးပေါ့ သူတို့က အဲ့ဒီတော့ ကျနော်လိုက်ရှာတဲ့ချိန်မှာ report article ဆိုတဲ့ဟာနဲ့ bot trigger ဖြစ်မဖြစ် html injection နဲ့အရင်စမ်းကြတာပေါ့
 
 ![image](/images/eloquia/7.png)
 ![image](/images/eloquia/8.png)
@@ -90,7 +90,7 @@ boom! html injection worked ဖြစ်သွားပါတယ် အဲ့လ
 
 ![image](/images/eloquia/10.png)
 
-boom!!! အဲ့တာလေးက အလုပ်ဖြစ်သွားပြီ admin profile နဲ့သူက y0uG0tME စာလုံး၀င်ရေးထားတာတွေ့ပါလိမ့်မယ် အဲ့ဒီ payload လေးကဘယ်လိုရလဲဆိုရင်ရှင်းပြပေးပါမယ် 
+အဲ့တာလေးက အလုပ်ဖြစ်သွားပြီ admin profile နဲ့သူက y0uG0tME စာလုံး၀င်ရေးထားတာတွေ့ပါလိမ့်မယ် အဲ့ဒီ payload လေးကဘယ်လိုရလဲဆိုရင်ရှင်းပြပေးပါမယ် 
 
 ```html
 <form name="commentForm" ng-submit="submitForm()" novalidate class="ng-pristine ng-invalid ng-invalid-required">
@@ -140,7 +140,7 @@ formData.comment='y0uG0tME';submitForm() အပေါ်မှာရှင်း
 
 ![image](/images/eloquia/11.png)
 
-boom! admin cookie ရပြီဆိုတော့ admin panel ထဲ၀င်လိုက်ရအောင် cookies သုံးပြီး ဘယ်လိုသုံးရမလဲဆို right click -> inspect -> application -> cookies မှာရလာတဲ့ဟာတွေ အစားထိုးလိုက်ရုံပါပဲ 
+admin cookie ရပြီဆိုတော့ admin panel ထဲ၀င်လိုက်ရအောင် cookies သုံးပြီး ဘယ်လိုသုံးရမလဲဆို right click -> inspect -> application -> cookies မှာရလာတဲ့ဟာတွေ အစားထိုးလိုက်ရုံပါပဲ 
 
 ![image](/images/eloquia/12.png)
 
@@ -233,7 +233,7 @@ __declspec(dllexport) int sqlite3_extension_init(
 
 ![image](/images/eloquia/18.jpg)
 
-boom!!! reverse shell လေးရလာပါပြီ အဲ့ဒီတော့ user flag လေးပါယူလိုက်ရအောင် 
+reverse shell လေးရလာပါပြီ အဲ့ဒီတော့ user flag လေးပါယူလိုက်ရအောင် 
 
 ![image](/images/eloquia/19.jpg)
 
@@ -244,7 +244,7 @@ boom!!! reverse shell လေးရလာပါပြီ အဲ့ဒီတော
 
 ![image](/images/eloquia/21.jpg)
 
-boom! we got creds အဲ့လိုနဲ့ olivia.kat ရဲ့ cred ကိုရလာပါတယ် browser_decrypt.py ရဲ့ script လေးကတော့ 
+we got creds အဲ့လိုနဲ့ olivia.kat ရဲ့ cred ကိုရလာပါတယ် browser_decrypt.py ရဲ့ script လေးကတော့ 
 
 ```python
 #!/usr/bin/env python3
@@ -351,7 +351,7 @@ if __name__ == "__main__":
 
 ![image](/images/eloquia/24.jpg)
 
-boom! ၀င်လို့ရပါပြီ အဲ့ဒီတော့က directory တွေစစ်ကြည့်လိုက်ရအောင် 
+၀င်လို့ရပါပြီ အဲ့ဒီတော့က directory တွေစစ်ကြည့်လိုက်ရအောင် 
 
 ![image](/images/eloquia/25.jpg)
 
@@ -458,7 +458,7 @@ while ($true) {
 
 ## Priv_Expl_Method2
 
-boom! flag လေးကိုရနေတာတွေ့ရပါလိမ့်မယ် နောက်တစ်နည်းနဲ့ ထပ်စမ်းလိုက်ကြရအောင် reverse shell ယူပြီး sliver-c2 နဲ့ administrator hash dump ကြမယ် rev_shell.c
+flag လေးကိုရနေတာတွေ့ရပါလိမ့်မယ် နောက်တစ်နည်းနဲ့ ထပ်စမ်းလိုက်ကြရအောင် reverse shell ယူပြီး sliver-c2 နဲ့ administrator hash dump ကြမယ် rev_shell.c
 
 ```c
 #include <winsock2.h>
@@ -530,13 +530,13 @@ ip ချိန်းဖို့မမေ့ပါနဲ့ အပေါ်န�
 
 ![image](/images/eloquia/27.jpg)
 
-boom! [+] SUCCESS ဖြစ်တဲ့အချိန်မှာ reverse shell လေးရလာပါပြီ အဲ့ reverse shell ကိုသုံးပြီး sliver-c2 shell ထပ်ယူပါမယ် ဒီ machine မှာ antivirus detect တာတွေပါပါတယ် 
+[+] SUCCESS ဖြစ်တဲ့အချိန်မှာ reverse shell လေးရလာပါပြီ အဲ့ reverse shell ကိုသုံးပြီး sliver-c2 shell ထပ်ယူပါမယ် ဒီ machine မှာ antivirus detect တာတွေပါပါတယ် 
 
 ![image](/images/eloquia/28.jpg)
 ![image](/images/eloquia/29.jpg)
 
-boom! administrator hash လေးရလာပါပြီ သုံးကြည့်လိုက်ရအောင် administrator hash ကိုရမရ
+administrator hash လေးရလာပါပြီ သုံးကြည့်လိုက်ရအောင် administrator hash ကိုရမရ
 
 ![image](/images/eloquia/30.jpg)
 
-boom! ကျနော်တို့ရဲ့ administrator hash ကသုံးလို့ရပါတယ် root flag လေးလည်းရပါပြီ အဆုံးထိ ဖတ်ပေးတဲ့အတွက် ကျေးဇူးပါဗျ :3
+ကျနော်တို့ရဲ့ administrator hash ကသုံးလို့ရပါတယ် root flag လေးလည်းရပါပြီ အဆုံးထိ ဖတ်ပေးတဲ့အတွက် ကျေးဇူးပါဗျ :3
