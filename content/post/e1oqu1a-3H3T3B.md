@@ -68,7 +68,9 @@ create new article option ကို တစ်ချက်ကြည့်ပါ�
 ![image](/images/eloquia/5.png)
 
 ဒီမှာဆိုရင် rich text editor field မှာ html injection လုပ်ကြည့်ထားပါတယ် 
-> <p style="color:red">hello</p>
+```html
+<p style="color:red">hello</p>
+```
 
 ![image](/images/eloquia/6.png)
 
@@ -78,3 +80,11 @@ boom! html injection worked ဖြစ်သွားပါတယ် အဲ့လ
 ![image](/images/eloquia/8.png)
 
 အဲ့ဒီတော့ ကျနော်တို့မှာ sessionid နဲ့ csrf token ကို bot ဆီက html injection နဲ့ဘယ်လိုယူကြမလဲ recon လိုက်ကြရအောင် 
+
+![image](/images/eloquia/9.png)
+
+ဒီမှာဆိုရင် angularjs 1.8.2 သုံးထားတာဆိုတော့ html injection အတွက် angularjs ဟာသုံးပြီး inject ကြည့်လိုက်ရအောင် 
+
+```html
+<p ng-focus="formData.comment=you got me;submitForm()" autofocus tabindex="0">hitting me???</p>
+```
