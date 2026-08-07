@@ -111,9 +111,20 @@ boom!!! အဲ့တာလေးက အလုပ်ဖြစ်သွားပ�
 </form>
 ```
 
-ဒီနှစ်ခုကို တွေ့ပါလိမ့်မယ် leave a comment form ကို html inpsect လိုက်တဲ့အခါမှာ 
+ဒီနှစ်ခုကို တွေ့ပါလိမ့်မယ် leave a comment form ကို html inspect လိုက်တဲ့အခါမှာ 
 
 ```html
 ng-submit="submitForm()"
 ng-model="formData.comment"
 ```
+
+အဲ့ဒီတော့ html injection commands အကြောင်းရှင်းပြပါမယ် 
+
+```html
+<p ng-focus="formData.comment='y0uG0tME';submitForm()" autofocus tabindex="0">hitting me???</p>
+```
+
+ng-focus က element တစ်ခုကို focus ပြီးရေးဖို့သုံးထားတာပါ 
+autofocus ဆိုတာက website page ထဲ၀င်လိုက်တာနဲ့ အဲ့ element ကိုတစ်ခါတည်း တန်း focus ဖို့ပါ 
+tabindex=0 ကကြတော့ <p> tag element ကို focusable ဖြစ်အောင်လုပ်ထားတာပါ 
+formData.comment='y0uG0tME';submitForm() အပေါ်မှာရှင်းပြထားတဲ့ html inspect ပြီးတွေ့တဲ့ဟာကို comment ရေးဖို့နဲ့ ပြီးတော့ submitForm() function ကို direct execute ပြီး comment တင်ဖို့ပါ 
