@@ -10,8 +10,6 @@ cover = '/images/covers/bg2.webp'
 
 ဒီမှာဆိုရင် machine လေးစလိုက်ပြီးရင် ip ‌လေးရလာပါလိမ့်မယ် 
 
-## Recon
-
 > (.venv) ❰gh0st69❙~❱✔≻ ping 10.129.244.81
 ```bash
 PING 10.129.244.81 (10.129.244.81) 56(84) bytes of data.
@@ -241,6 +239,7 @@ boom!!! reverse shell လေးရလာပါပြီ အဲ့ဒီတော
 အဲ့ဒီနောက်ပိုင်း ကျနော် recon နေရင်း microsoftedgeupdate.exe ကိုတွေ့လိုက်ပါတယ်အဲ့ဒီတော့က ကျနော်စဥ်းစားမိတာ user တစ်ယောက်ယောက်ရဲ့ credential ကို browser ကနေယူလို့ရလောက်လားဆိုတာ recon ရင်း c:\users\web ရဲ့ folder တွေထဲမှာ browser password decrypt လို့ရမဲ့ files Local State and Login Data files တွေကိုတွေ့လိုက်ရပါတယ် အဲ့ဒီတော့က browser decrypt လိုက်ရအောင် 
 
 ![image](/images/eloquia/20.jpg)
+![image](/images/eloquia/23.jpg)
 
 ![image](/images/eloquia/21.jpg)
 
