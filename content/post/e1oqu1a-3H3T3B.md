@@ -91,4 +91,29 @@ boom! html injection worked ဖြစ်သွားပါတယ် အဲ့လ
 
 ![image](/images/eloquia/10.png)
 
-boom!!! အဲ့တာလေးက အလုပ်ဖြစ်သွားပြီ admin profile နဲ့သူက y0uG0tME စာလုံး၀င်ရေးထားတာတွေ့ပါလိမ့်မယ် 
+boom!!! အဲ့တာလေးက အလုပ်ဖြစ်သွားပြီ admin profile နဲ့သူက y0uG0tME စာလုံး၀င်ရေးထားတာတွေ့ပါလိမ့်မယ် အဲ့ဒီ payload လေးကဘယ်လိုရလဲဆိုရင်ရှင်းပြပေးပါမယ် 
+
+```html
+<form name="commentForm" ng-submit="submitForm()" novalidate class="ng-pristine ng-invalid ng-invalid-required">
+    <input type="hidden" id="csrfmiddlewaretoken" value="MCkb7N7DJ4HQGeZSipPZFC3vvJfKkw8eZrFoR2jPp8rcKxcZlDJdEn5sRc7i7BxU" autocomplete="off">
+    
+    <div class="col-lg-12 col-md-12">
+        <div class="form-group">
+            <textarea name="comment" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" placeholder="Your Comments" required ng-model="formData.comment"></textarea>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12">
+        <button type="submit" class="default-btn" ng-disabled="submitted">
+            Post A Comment <i class="flaticon-send"></i>
+        </button>
+    </div>
+</form>
+```
+
+ဒီနှစ်ခုကို တွေ့ပါလိမ့်မယ် leave a comment form ကို html inpsect လိုက်တဲ့အခါမှာ 
+
+```html
+ng-submit="submitForm()"
+ng-model="formData.comment"
+```
