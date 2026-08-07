@@ -1,7 +1,7 @@
 +++
 date = '2026-06-07T13:17:16+06:30'
 title = 'Connected-3H3T3B'
-cover = '/images/connected/connected.png'
+cover = '/images/covers/bg6.webp'
 +++
 
 ![image](/images/connected/connected.png) Connected
