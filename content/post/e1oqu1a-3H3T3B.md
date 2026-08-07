@@ -86,5 +86,9 @@ boom! html injection worked ဖြစ်သွားပါတယ် အဲ့လ
 ဒီမှာဆိုရင် angularjs 1.8.2 သုံးထားတာဆိုတော့ html injection အတွက် angularjs ဟာသုံးပြီး inject ကြည့်လိုက်ရအောင် 
 
 ```html
-<p ng-focus="formData.comment=you got me;submitForm()" autofocus tabindex="0">hitting me???</p>
+<p ng-focus="formData.comment='y0uG0tME';submitForm()" autofocus tabindex="0">hitting me???</p>
 ```
+
+![image](/images/eloquia/10.png)
+
+boom!!! အဲ့တာလေးက အလုပ်ဖြစ်သွားပြီ admin profile နဲ့သူက y0uG0tME စာလုံး၀င်ရေးထားတာတွေ့ပါလိမ့်မယ် 
