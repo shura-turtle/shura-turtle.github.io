@@ -54,3 +54,27 @@ PORT     STATE SERVICE REASON
 127.0.0.1       localhost
 10.129.244.81   eloquia.htb 
 ```
+
+အဲ့ဒီတော့ webserver ကို၀င်လို့ရပါပြီ webserver ကိုစပြီး recon ကြရအောင် 
+
+![image](/images/eloquia/2.jpg)
+
+login နဲ့ account register options ရှိပါတယ် အဲ့ဒီတော့ register တင်ပြီး account login ပါမယ် 
+
+![image](/images/eloquia/3.png)
+
+create new article option ကို တစ်ချက်ကြည့်ပါမယ် 
+
+![image](/images/eloquia/5.png)
+
+ဒီမှာဆိုရင် rich text editor field မှာ html injection လုပ်ကြည့်ထားပါတယ် 
+> <p style="color:red">hello</p>
+
+![image](/images/eloquia/6.png)
+
+boom! html injection worked ဖြစ်သွားပါတယ် အဲ့လိုနဲ့ htb box တွေမှာဆိုရင် သူတို့မှာ trigger bot တွေရှိပါတယ် bot တွေနဲ့ လုပ်ရတာသဘောကျတာမျိုးပေါ့ သူတို့က အဲ့ဒီတော့ ကျနော်လိုက်ရှာတဲ့ချိန်မှာ report article ဆိုတဲ့ဟာနဲ့ bot trigger ဖြစ်မဖြစ် html injection နဲ့အရင်စမ်းကြတာပေါ့
+
+![image](/images/eloquia/7.png)
+![image](/images/eloquia/8.png)
+
+အဲ့ဒီတော့ ကျနော်တို့မှာ sessionid နဲ့ csrf token ကို bot ဆီက html injection နဲ့ဘယ်လိုယူကြမလဲ recon လိုက်ကြရအောင် 
