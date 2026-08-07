@@ -124,11 +124,12 @@ ng-model="formData.comment"
 <p ng-focus="formData.comment='y0uG0tME';submitForm()" autofocus tabindex="0">hitting me???</p>
 ```
 
+```bash
 ng-focus က element တစ်ခုကို focus ပြီးရေးဖို့သုံးထားတာပါ 
 autofocus ဆိုတာက website page ထဲ၀င်လိုက်တာနဲ့ အဲ့ element ကိုတစ်ခါတည်း တန်း focus ဖို့ပါ 
 tabindex=0 ကကြတော့ <p> tag element ကို focusable ဖြစ်အောင်လုပ်ထားတာပါ 
 formData.comment='y0uG0tME';submitForm() အပေါ်မှာရှင်းပြထားတဲ့ html inspect ပြီးတွေ့တဲ့ဟာကို comment ရေးဖို့နဲ့ ပြီးတော့ submitForm() function ကို direct execute ပြီး comment တင်ဖို့ပါ 
-
+```
 အဲ့ဒီတော့ အကုန်ရှင်းပြပြီးပြီဆိုတော့ admin token ယူလိုက်ကြရအောင် 
 
 ```html
