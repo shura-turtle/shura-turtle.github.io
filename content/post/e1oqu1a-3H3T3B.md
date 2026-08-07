@@ -130,6 +130,7 @@ autofocus ဆိုတာက website page ထဲ၀င်လိုက်တာ�
 tabindex=0 ကကြတော့ <p> tag element ကို focusable ဖြစ်အောင်လုပ်ထားတာပါ 
 formData.comment='y0uG0tME';submitForm() အပေါ်မှာရှင်းပြထားတဲ့ html inspect ပြီးတွေ့တဲ့ဟာကို comment ရေးဖို့နဲ့ ပြီးတော့ submitForm() function ကို direct execute ပြီး comment တင်ဖို့ပါ 
 ```
+
 အဲ့ဒီတော့ အကုန်ရှင်းပြပြီးပြီဆိုတော့ admin token ယူလိုက်ကြရအောင် 
 
 ```html
