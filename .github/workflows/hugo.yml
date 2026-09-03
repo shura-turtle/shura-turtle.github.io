@@ -42,27 +42,34 @@ jobs:
         with:
           repository: shura-turtle/offsec-n0t3
           path: offsec-n0t3
+          ref: main
           fetch-depth: 0
+          submodules: recursive
 
-      # DEBUG — make sure both Hugo projects actually exist
-      - name: Check files
+      - name: Validate Hugo sites
         run: |
-          echo "=== MAIN REPO ==="
-          pwd
-          ls -la
-          echo "Main hugo.toml:"
-          ls -l hugo.toml
-
-          echo "=== OFFSEC REPO ==="
-          ls -la "$GITHUB_WORKSPACE/offsec-n0t3"
-          echo "Offsec hugo.toml:"
-          ls -l "$GITHUB_WORKSPACE/offsec-n0t3/hugo.toml"
+          test -f "$GITHUB_WORKSPACE/hugo.toml" || {
+            echo "::error::Main Hugo config is missing: hugo.toml"
+            exit 1
+          }
+          test -f "$GITHUB_WORKSPACE/offsec-n0t3/hugo.toml" || {
+            echo "::error::offsec-n0t3 has no committed hugo.toml. Commit and push the Hugo source to shura-turtle/offsec-n0t3 (main)."
+            echo "::error::The checkout currently contains:"
+            find "$GITHUB_WORKSPACE/offsec-n0t3" -maxdepth 2 -type f -print
+            exit 1
+          }
+          test -f "$GITHUB_WORKSPACE/offsec-n0t3/themes/hugo-book/theme.toml" || {
+            echo "::error::The hugo-book theme submodule was not checked out."
+            exit 1
+          }
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
 
       - name: Build main site
+        env:
+          HUGO_ENVIRONMENT: production
         run: |
           hugo \
             --source "$GITHUB_WORKSPACE" \
@@ -72,6 +79,8 @@ jobs:
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Build Offsec notes
+        env:
+          HUGO_ENVIRONMENT: production
         run: |
           hugo \
             --source "$GITHUB_WORKSPACE/offsec-n0t3" \
