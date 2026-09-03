@@ -27,20 +27,36 @@ jobs:
       HUGO_ENVIRONMENT: production
 
     steps:
+      # -----------------------------
+      # Install Hugo Extended
+      # -----------------------------
       - name: Install Hugo CLI
         run: |
-          wget -O ${{ runner.temp }}/hugo.deb \
-            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
-          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+          wget -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
 
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+
+          hugo version
+
+      # -----------------------------
+      # Install Dart Sass
+      # -----------------------------
       - name: Install Dart Sass
-        run: sudo snap install dart-sass
+        run: |
+          sudo snap install dart-sass
 
+      # -----------------------------
+      # Checkout main website
+      # -----------------------------
       - name: Checkout main site
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # -----------------------------
+      # Checkout Offsec notes repo
+      # -----------------------------
       - name: Checkout Offsec notes
         uses: actions/checkout@v4
         with:
@@ -48,10 +64,16 @@ jobs:
           path: offsec-n0t3
           fetch-depth: 0
 
+      # -----------------------------
+      # Setup GitHub Pages
+      # -----------------------------
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
 
+      # -----------------------------
+      # Build main Reimu site
+      # -----------------------------
       - name: Build main site
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
@@ -59,29 +81,42 @@ jobs:
           hugo \
             --gc \
             --minify \
+            --source . \
+            --destination ./public \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
+      # -----------------------------
+      # Build Offsec Hugo Book
+      # -----------------------------
       - name: Build Offsec notes
-        working-directory: offsec-n0t3
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
         run: |
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/offsec-n0t3/" \
-            --destination ../public/offsec-n0t3
+            --source ./offsec-n0t3 \
+            --destination ./public/offsec-n0t3 \
+            --baseURL "${{ steps.pages.outputs.base_url }}/offsec-n0t3/"
 
+      # -----------------------------
+      # Upload combined site
+      # -----------------------------
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
+  # -----------------------------
+  # Deploy to GitHub Pages
+  # -----------------------------
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
+
     needs: build
 
     steps:
