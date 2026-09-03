@@ -5,13 +5,11 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-# Allow GITHUB_TOKEN to deploy to Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent deployment, skip queued runs in between
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -23,25 +21,38 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     env:
       HUGO_VERSION: 0.162.0
       HUGO_ENVIRONMENT: production
+
     steps:
       - name: Install Hugo CLI
         run: |
           wget -O ${{ runner.temp }}/hugo.deb \
-            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
       - name: Install Dart Sass
         run: sudo snap install dart-sass
-      - name: Checkout
+
+      - name: Checkout main site
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Checkout Offsec notes
+        uses: actions/checkout@v4
+        with:
+          repository: shura-turtle/offsec-n0t3
+          path: offsec-n0t3
+          fetch-depth: 0
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: Build with Hugo
+
+      - name: Build main site
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
         run: |
@@ -49,6 +60,18 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Build Offsec notes
+        working-directory: offsec-n0t3
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/offsec-n0t3/" \
+            --destination ../public/offsec-n0t3
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -60,6 +83,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
