@@ -29,9 +29,6 @@ jobs:
           sudo dpkg -i "${{ runner.temp }}/hugo.deb"
           hugo version
 
-      - name: Install Dart Sass
-        run: sudo snap install dart-sass
-
       - name: Checkout main site
         uses: actions/checkout@v4
         with:
