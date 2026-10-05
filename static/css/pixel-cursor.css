@@ -1,0 +1,52 @@
+/* Native cursors: exact hotspots, no tracking scripts or delayed followers. */
+@media (any-hover: hover) and (any-pointer: fine) {
+  :root {
+    --cursor-default: url("../images/cursor/pixel-anime-arrow.svg") 1 1, auto;
+    --cursor-pointer: url("../images/cursor/pixel-anime-arrow.svg") 1 1, pointer;
+    --cursor-text: url("../images/cursor/pixel-text.svg") 10 10, text;
+  }
+  html, body { cursor: var(--cursor-default); }
+  a, button, summary, label[for], select, [role="button"],
+  input:is([type="checkbox"], [type="radio"], [type="range"], [type="submit"]) {
+    cursor: var(--cursor-pointer);
+  }
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="submit"]):not([type="button"]):not([type="reset"]),
+  textarea, [contenteditable="true"], p, pre, code, blockquote {
+    cursor: var(--cursor-text);
+  }
+  button:disabled, input:disabled, select:disabled, textarea:disabled,
+  [aria-disabled="true"] { cursor: not-allowed !important; }
+}
+
+/* A single arrow-and-character graphic replaces the native pointer while active.
+   Without JavaScript, the static combined graphic above remains a native cursor. */
+html.anime-cursor-active {
+  --cursor-default: none;
+  --cursor-pointer: none;
+  --cursor-text: none;
+}
+html.anime-cursor-active,
+html.anime-cursor-active :is(*, #main, #container) {
+  cursor: none !important;
+}
+.anime-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 2147483647;
+  contain: layout style;
+  will-change: transform;
+}
+.anime-cursor[hidden] { display: none; }
+.anime-cursor svg { display: block; width: 32px; height: 32px; image-rendering: pixelated; transform-origin: 3px 1px; }
+.chibi-eyes { transform-box: fill-box; transform-origin: 3px 1px; animation: chibi-blink 3.6s linear infinite; }
+.chibi-hair { animation: chibi-hair 1.6s steps(2,end) infinite; }
+.anime-cursor.is-clicking .chibi-eyes { animation: chibi-click-blink 300ms ease-out; }
+@keyframes chibi-hair { 50% { transform: translateY(1px); } }
+@keyframes chibi-blink { 0%,42%,48%,100% { transform: scaleY(1); } 45% { transform: scaleY(.1); } }
+@keyframes chibi-click-blink { 50% { transform: scaleY(.2); } }
+@media (prefers-reduced-motion: reduce) { .anime-cursor { display: none; } }
+@media (any-hover: none) { .anime-cursor { display: none; } }

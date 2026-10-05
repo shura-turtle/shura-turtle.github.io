@@ -1,0 +1,66 @@
+/* Layered motion keeps the entrance, floating body, and face independent. */
+.ghost-loader { position: relative; width: 160px; height: 160px; }
+.ghost-arrival { position: absolute; inset: 0; animation: ghost-arrive 700ms cubic-bezier(.16,1,.3,1) both; }
+.ghost-sprite { position: absolute; left: 24px; top: 0; width: 112px; height: 126px; transform-origin: 50% 65%; animation: ghost-float 3.2s ease-in-out infinite; }
+.ghost-sprite svg { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+.ghost-eyes { animation: ghost-look 6.4s steps(1, end) infinite; }
+.ghost-eyes path { transform-box: fill-box; transform-origin: center; animation: ghost-blink 6.4s linear infinite; }
+.ghost-hem { animation: ghost-flutter .5s steps(1, end) infinite; }
+.ghost-shadow { position: absolute; left: 48px; bottom: 7px; width: 64px; height: 8px; background: #315d7366; clip-path: polygon(12% 0,88% 0,88% 25%,100% 25%,100% 75%,88% 75%,88% 100%,12% 100%,12% 75%,0 75%,0 25%,12% 25%); animation: ghost-shadow 3.2s ease-in-out infinite; }
+[data-theme="dark"] .ghost-shadow { background: #69d7ff35; }
+.ghost-spark { position: absolute; width: 4px; height: 4px; background: #48b5e0; animation: ghost-spark 2.8s steps(7, end) infinite; }
+.ghost-spark-one { top: 55px; left: 9px; }
+.ghost-spark-two { top: 95px; right: 12px; animation-delay: -1.4s; }
+.ghost-spark-three { top: 118px; left: 25px; width: 3px; height: 3px; animation-delay: -.7s; }
+.ghost-spark-four { top: 36px; right: 23px; width: 3px; height: 3px; animation-delay: -2.1s; }
+@media (hover: hover) {
+  .ghost-loader:hover .ghost-sprite svg { animation: ghost-greet 700ms ease-in-out; transform-origin: 50% 70%; }
+  .footer-info-sep:hover, .sponsor-icon:hover { animation: ghost-greet 700ms ease-in-out infinite; }
+}
+#loader.loading .ghost-loader * { animation-play-state: paused; }
+.footer-info-sep, .sponsor-icon, .sidebar-top .sidebar-top-taichi { animation: ghost-icon-float 2s ease-in-out infinite; }
+.sidebar-top .sidebar-top-taichi { border-radius: 0; }
+.icon-taichi::before { mask-image: url('/images/pixel-ghost.svg'); -webkit-mask-image: url('/images/pixel-ghost.svg'); animation: ghost-icon-float 2s ease-in-out infinite; }
+@keyframes ghost-arrive {
+  from { opacity: 0; transform: translate(-28px, 28px) rotate(-14deg) scale(.65); }
+  65% { opacity: 1; transform: translate(4px, -5px) rotate(4deg) scale(1.04); }
+  to { opacity: 1; transform: translate(0, 0) rotate(0) scale(1); }
+}
+@keyframes ghost-float {
+  0%,100% { transform: translate(-4px, 7px) rotate(-4deg) scale(1.04,.96); }
+  25% { transform: translate(4px,-5px) rotate(2deg) scale(.97,1.03); }
+  50% { transform: translate(6px,-13px) rotate(4deg) scale(1); }
+  75% { transform: translate(-2px,-3px) rotate(-1deg) scale(.98,1.02); }
+}
+@keyframes ghost-shadow {
+  0%,100% { transform: translateX(-3px) scaleX(1); opacity: .8; }
+  50% { transform: translateX(5px) scaleX(.6); opacity: .3; }
+}
+@keyframes ghost-look {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(2px); }
+  48% { transform: translateX(0); }
+  70% { transform: translateX(-2px); }
+  90% { transform: translateX(0); }
+}
+@keyframes ghost-blink {
+  0%,33%,37%,79%,83%,100% { transform: scaleY(1); }
+  35%,81% { transform: scaleY(.12); }
+}
+@keyframes ghost-flutter { 50% { transform: translateY(-2px); } }
+@keyframes ghost-spark {
+  0% { opacity: 0; transform: translate(0,12px) scale(.5); }
+  20% { opacity: .65; }
+  60% { opacity: .45; transform: translate(5px,-12px) scale(1); }
+  100% { opacity: 0; transform: translate(-3px,-30px) scale(.5); }
+}
+@keyframes ghost-greet {
+  0%,100% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-12deg) scale(1.07,.93); }
+  50% { transform: rotate(10deg) scale(.96,1.04); }
+  75% { transform: rotate(-5deg) scale(1.02,.98); }
+}
+@keyframes ghost-icon-float { 0%,100% { transform: translateY(2px); } 50% { transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) {
+  .ghost-loader *, .ghost-loader:hover .ghost-sprite svg, .footer-info-sep, .sponsor-icon, .sidebar-top .sidebar-top-taichi, .icon-taichi::before { animation: none !important; }
+}

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shura-turtle</title>
+    <link>https://shura-turtle.github.io/algolia.json</link>
+    <description>Recent content from shura-turtle</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    
+    <managingEditor>xxx@xxx.com (shura-turtle)</managingEditor>
+    <webMaster>xxx@xxx.com (shura-turtle)</webMaster>
+    
+    <copyright>All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!</copyright>
+    
+    <lastBuildDate>Fri, 04 Sep 2026 18:24:08 +0630</lastBuildDate>
+    
+    
+    <atom:link href="https://shura-turtle.github.io/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>New</title>
+      <link>https://shura-turtle.github.io/post/new/</link>
+      <pubDate>Fri, 04 Sep 2026 18:24:08 &#43;0630</pubDate>
+      <author>xxx@xxx.com (shura-turtle)</author>
+      <guid>https://shura-turtle.github.io/post/new/</guid>
+      <description>
+        <![CDATA[<h1>New</h1><p>Author: shura-turtle(xxx@xxx.com)</p>
+        
+          
+        
+        <hr><p>Published on 2026-09-04 at <a href='https://shura-turtle.github.io/'>shura-turtle</a>, last modified on 2026-09-04</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>E1oqu1a-3H3T3B</title>
+      <link>https://shura-turtle.github.io/post/e1oqu1a-3h3t3b/</link>
+      <pubDate>Fri, 07 Aug 2026 09:47:12 &#43;0630</pubDate>
+      <author>xxx@xxx.com (shura-turtle)</author>
+      <guid>https://shura-turtle.github.io/post/e1oqu1a-3h3t3b/</guid>
+      <description>
+        <![CDATA[<h1>E1oqu1a-3H3T3B</h1><p>Author: shura-turtle(xxx@xxx.com)</p>
+        
+          <p><img src="/images/eloquia/eloquia.png" alt="image"> Eloquia</p>
+<p><img src="/images/eloquia/1.png" alt="image"></p>
+<p>ဒီမှာဆိုရင် machine လေးစလိုက်ပြီးရင် ip ‌လေးရလာပါလိမ့်မယ်</p>
+<blockquote>
+<p>(.venv) ❰gh0st69❙~❱✔≻ ping 10.129.244.81</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PING 10.129.244.81 <span class="o">(</span>10.129.244.81<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.129.244.81: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">425</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">127</span> <span class="nv">time</span><span class="o">=</span><span class="m">427</span> ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.129.244.81: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">426</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">127</span> <span class="nv">time</span><span class="o">=</span><span class="m">426</span> ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.129.244.81: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">427</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">127</span> <span class="nv">time</span><span class="o">=</span><span class="m">427</span> ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.129.244.81: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">428</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">127</span> <span class="nv">time</span><span class="o">=</span><span class="m">426</span> ms
+</span></span></code></pre></div><p>connection back ပြန်ရတယ်ဆိုတော့ စပြီး pentest လို့ရပါပြီ</p>
+<blockquote>
+<p>(.venv) ❰gh0st69❙~❱✔≻ rustscan -a 10.129.244.81</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">.----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="o">{}</span>  <span class="o">}</span><span class="p">|</span> <span class="o">{</span> <span class="o">}</span> <span class="p">|</span><span class="o">{</span> <span class="o">{</span>__ <span class="o">{</span>_   _<span class="o">}{</span> <span class="o">{</span>__  /  ___<span class="o">}</span> / <span class="o">{}</span> <span class="se">\ </span><span class="p">|</span>  <span class="sb">`</span><span class="p">|</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> .-. <span class="se">\|</span> <span class="o">{</span>_<span class="o">}</span> <span class="p">|</span>.-._<span class="o">}</span> <span class="o">}</span> <span class="p">|</span> <span class="p">|</span>  .-._<span class="o">}</span> <span class="o">}</span><span class="se">\ </span>    <span class="o">}</span>/  /<span class="se">\ </span> <span class="se">\|</span> <span class="p">|</span><span class="se">\ </span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="sb">`</span>-<span class="s1">&#39; `-&#39;</span><span class="sb">`</span>-----<span class="s1">&#39;`----&#39;</span>  <span class="sb">`</span>-<span class="s1">&#39;  `----&#39;</span>  <span class="sb">`</span>---<span class="s1">&#39; `-&#39;</span>  <span class="sb">`</span>-<span class="s1">&#39;`-&#39;</span> <span class="sb">`</span>-<span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Open 10.129.244.81:80
+</span></span><span class="line"><span class="cl">Open 10.129.244.81:5985
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PORT     STATE SERVICE REASON
+</span></span><span class="line"><span class="cl">80/tcp   open  http    syn-ack ttl <span class="m">127</span>
+</span></span><span class="line"><span class="cl">5985/tcp open  wsman   syn-ack ttl <span class="m">127</span>
+</span></span></code></pre></div><p>ဒီမှာဆိုရင် port 80 ပွင့်နေတယ်ဆိုတော့ webserver ရှိလောက်မယ် ip address နဲ့တန်း၀င်ရင် ဒီလိုဖြစ်ပါလိမ့်မယ်</p>
+        
+        <hr><p>Published on 2026-08-07 at <a href='https://shura-turtle.github.io/'>shura-turtle</a>, last modified on 2026-08-07</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Connected-3H3T3B</title>
+      <link>https://shura-turtle.github.io/post/connected-3h3t3b/</link>
+      <pubDate>Sun, 07 Jun 2026 13:17:16 &#43;0630</pubDate>
+      <author>xxx@xxx.com (shura-turtle)</author>
+      <guid>https://shura-turtle.github.io/post/connected-3h3t3b/</guid>
+      <description>
+        <![CDATA[<h1>Connected-3H3T3B</h1><p>Author: shura-turtle(xxx@xxx.com)</p>
+        
+          <p><img src="/images/connected/connected.png" alt="image"> Connected</p>
+<p><img src="/images/connected/1.png" alt="image"></p>
+<p>ဒီမှာဆိုရင် machine လေးစလိုက်ပြီးရင် ip ‌လေးရလာပါလိမ့်မယ် vpn ချိတ်ပြီးရင်</p>
+<h2 id="recon">
+<a class="header-anchor" href="#recon"></a>
+Recon
+</h2><blockquote>
+<p>ping machine_ip</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PING machine_ip <span class="o">(</span>machine_ip<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from machine_ip: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">63</span> <span class="nv">time</span><span class="o">=</span>5.33 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from machine_ip: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">63</span> <span class="nv">time</span><span class="o">=</span>1.14 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from machine_ip: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">63</span> <span class="nv">time</span><span class="o">=</span>2.39 ms
+</span></span></code></pre></div><p>ဒီလိုမျိုးလေးတွေရလာရင် စပြီးတော့ pentest လို့ရပါပြီ machine box ကို</p>
+<p>nmap နဲ့စပြီး port scan ပါမယ်</p>
+<blockquote>
+<p>nmap -sC -sV -oN nmap_top_svc.txt &lt;machine_ip&gt;</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">22/tcp   open  ssh      OpenSSH 7.4
+</span></span><span class="line"><span class="cl">80/tcp   open  http     Apache httpd 2.4.6
+</span></span><span class="line"><span class="cl">443/tcp  open  ssl/http Apache httpd 2.4.6 
+</span></span></code></pre></div><p>80 and 443 port ရှိတယ်ဆိုတော့ webserver လေးရှိပါတယ်</p>
+        
+        <hr><p>Published on 2026-06-07 at <a href='https://shura-turtle.github.io/'>shura-turtle</a>, last modified on 2026-06-07</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Overflow1</title>
+      <link>https://shura-turtle.github.io/post/overflow1/</link>
+      <pubDate>Thu, 04 Jun 2026 13:14:01 &#43;0630</pubDate>
+      <author>xxx@xxx.com (shura-turtle)</author>
+      <guid>https://shura-turtle.github.io/post/overflow1/</guid>
+      <description>
+        <![CDATA[<h1>Overflow1</h1><p>Author: shura-turtle(xxx@xxx.com)</p>
+        
+          <h1 id="challenge-file">
+<a class="header-anchor" href="#challenge-file"></a>
+challenge file
+</h1><p><a href="https://github.com/shura-turtle/educational-1">overflowme1</a></p>
+<h2 id="analysis">
+<a class="header-anchor" href="#analysis"></a>
+Analysis
+</h2><blockquote>
+<p>overflowme1 ကို ida pro နဲ့ analyse တဲ့အခါမှာ</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="kr">__fastcall</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">_BYTE</span> <span class="n">v4</span><span class="p">[</span><span class="mi">23</span><span class="p">];</span> <span class="c1">// [rsp+0h] [rbp-30h] BYREF
+</span></span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">v5</span><span class="p">;</span> <span class="c1">// [rsp+17h] [rbp-19h]
+</span></span></span><span class="line"><span class="cl">  <span class="n">FILE</span> <span class="o">*</span><span class="n">stream</span><span class="p">;</span> <span class="c1">// [rsp+18h] [rbp-18h]
+</span></span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">;</span> <span class="c1">// [rsp+20h] [rbp-10h]
+</span></span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">v8</span><span class="p">;</span> <span class="c1">// [rsp+2Ch] [rbp-4h]
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">setup</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">envp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">banner</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v8</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Please go ahead and leave a comment :&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">v4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">v8</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Bye bye</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">filename</span> <span class="o">=</span> <span class="s">&#34;flag.txt&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stream</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span> <span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v5</span> <span class="o">=</span> <span class="nf">fgetc</span><span class="p">(</span><span class="n">stream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">v5</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">putchar</span><span class="p">(</span><span class="n">v5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fclose</span><span class="p">(</span><span class="n">stream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>ဒီမှာဆိုရင် gets(v4) -&gt; v4 က [23] byte accept ပြီး အဲ့ထက်ကျော်အောင်ရေးလို့ရတယ် size check မပါလို့ အဲ့ကြောင်း buffer overflow ဖြစ်တယ်</p>
+        
+        <hr><p>Published on 2026-06-04 at <a href='https://shura-turtle.github.io/'>shura-turtle</a>, last modified on 2026-06-04</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>

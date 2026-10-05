@@ -1,0 +1,55 @@
+/* A shared 24-pixel grid for desktop, sidebar, and mobile navigation. */
+.main-nav-icon img[src*="images/menu/"],
+.sidebar-menu-icon img[src*="images/menu/"] {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  image-rendering: pixelated;
+  transform-origin: 50% 85%;
+}
+.main-nav-link-wrap:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: -4px;
+  border-radius: 6px;
+}
+.main-nav-link-wrap:is(:hover, :focus-visible) img[src*="images/menu/"],
+.sidebar-menu-link-wrap:is(:hover, :focus-within) img[src*="images/menu/"] {
+  animation: menu-pixel-hop 520ms ease-in-out;
+}
+.main-nav-link-wrap:is(:hover, :focus-visible) img[src$="about.svg"],
+.sidebar-menu-link-wrap:is(:hover, :focus-within) img[src$="about.svg"] {
+  animation: menu-ghost-float 1.4s ease-in-out infinite;
+}
+.main-nav-link-wrap:is(:hover, :focus-visible) img[src$="archives.svg"],
+.sidebar-menu-link-wrap:is(:hover, :focus-within) img[src$="archives.svg"] {
+  animation: menu-box-rock 520ms ease-in-out;
+}
+.main-nav-link-wrap:is(:hover, :focus-visible) img[src$="friend.svg"],
+.sidebar-menu-link-wrap:is(:hover, :focus-within) img[src$="friend.svg"] {
+  animation: menu-friends-sway 1.2s ease-in-out infinite;
+}
+@keyframes menu-friends-sway {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  35% { transform: translateY(-3px) rotate(4deg); }
+  70% { transform: translateY(-1px) rotate(-4deg); }
+}
+@keyframes menu-pixel-hop {
+  0%,100% { transform: translateY(0) scale(1); }
+  25% { transform: translateY(1px) scale(1.08,.92); }
+  55% { transform: translateY(-5px) scale(.96,1.04); }
+  80% { transform: translateY(0) scale(1.04,.96); }
+}
+@keyframes menu-ghost-float {
+  0%,100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-4px) rotate(4deg); }
+}
+@keyframes menu-box-rock {
+  0%,100% { transform: rotate(0); }
+  30% { transform: rotate(-9deg); }
+  65% { transform: rotate(7deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main-nav-link-wrap img[src*="images/menu/"],
+  .sidebar-menu-link-wrap img[src*="images/menu/"] { animation: none !important; }
+}

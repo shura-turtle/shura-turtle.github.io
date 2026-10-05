@@ -1,0 +1,88 @@
+/* Two opposing comet trails with a breathing diamond at the center. */
+#loader .loading-bg {
+  top: 0;
+  background: #edf6fa;
+  transition: opacity 240ms ease, visibility 240ms;
+}
+#loader .loading-left-bg { left: 0; }
+#loader .spinner-box { inset: 0; height: 100%; transition: opacity 180ms ease, visibility 180ms; }
+[data-theme="dark"] #loader .loading-bg { background: #0b1726; }
+.comet-loader {
+  --comet: #0096d6;
+  position: relative;
+  width: 128px;
+  height: 128px;
+}
+[data-theme="dark"] .comet-loader { --comet: #69d7ff; }
+.comet-orbit { position: absolute; border: 1px solid #48b5e026; border-radius: 50%; }
+.comet-orbit::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 35%, var(--comet) 99%, transparent 100%);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+}
+.comet-orbit::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
+  background: var(--comet);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--comet);
+}
+.comet-orbit-outer { inset: 4px; animation: comet-turn 1.15s linear infinite; }
+.comet-orbit-inner { inset: 24px; opacity: .65; animation: comet-turn 1.7s linear infinite reverse; }
+.comet-core {
+  position: absolute;
+  inset: 54px;
+  background: var(--comet);
+  transform: rotate(45deg);
+  animation: comet-breathe 1.15s ease-in-out infinite;
+}
+#loader .spinner-box .loading-word {
+  top: calc(50% + 104px);
+  color: #315d73;
+  font: 11px/1.5 monospace;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+[data-theme="dark"] #loader .spinner-box .loading-word { color: #90d4ec; }
+#loader.loading .loading-bg { transform: none; opacity: 0; visibility: hidden; pointer-events: none; }
+#loader.loading .comet-loader * { animation-play-state: paused; }
+/* Small orbit marks remain animated after the page finishes loading. */
+.footer-info-sep,
+.sponsor-icon,
+.sidebar-top .sidebar-top-taichi {
+  animation: comet-turn 1.8s linear infinite;
+}
+.sidebar-top .sidebar-top-taichi {
+  width: 32px;
+  height: 32px;
+  margin: 8px;
+  border-radius: 50%;
+}
+.icon-taichi::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: currentColor;
+  mask: url('/images/comet.svg') center / contain no-repeat;
+  -webkit-mask: url('/images/comet.svg') center / contain no-repeat;
+  animation: comet-turn 1.8s linear infinite;
+}
+@keyframes comet-turn { to { transform: rotate(360deg); } }
+@keyframes comet-breathe {
+  0%, 100% { transform: rotate(45deg) scale(.65); opacity: .55; }
+  50% { transform: rotate(135deg) scale(1); opacity: 1; box-shadow: 0 0 20px #48b5e045; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .comet-loader *, .footer-info-sep, .sponsor-icon,
+  .sidebar-top .sidebar-top-taichi, .icon-taichi::before { animation: none !important; }
+  #loader .loading-bg, #loader .spinner-box { transition: none; }
+}

@@ -3,20 +3,20 @@
 ########################################
 
 # main menu navigation
-# for more icon information, please visit https://github.com/D-Sketon/hexo-theme-reimu/issues/30
+# Custom pixel icons are stored in static/images/menu/.
 menu:
   - name: home
     url: ""
-    icon: e64b
+    icon: "images/menu/home.svg"
   - name: archives
     url: "archives"
-    icon: e612
+    icon: "images/menu/archives.svg"
   - name: about
     url: "about"
-    icon: e610
+    icon: "images/menu/about.svg"
   - name: friend
     url: "friend"
-    icon: e628
+    icon: "images/menu/friend.svg"
 
 mainSections: ["post"]
 # 年，月，日及时间的格式化样式
@@ -110,8 +110,8 @@ footer:
   count: false
   busuanzi: false
   icon:
-    url: "../images/taichi.png" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
-    rotate: true
+    url: "../images/pixel-ghost.svg" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
+    rotate: false
     mask: true # whether to use the images as a mask
 
 # Sidebar
@@ -214,12 +214,9 @@ triangle_badge:
 
 anchor_icon: # default use '#' icon, you can use a hexadecimal representation of fontawesome or icon_font, like 'f0c1', you can also use false to hide anchor icon
 
+# Pixel cursors and click hotspots are defined in static/css/pixel-cursor.css.
 reimu_cursor:
-  enable: true
-  cursor:
-    default: ../images/cursor/reimu-cursor-default.png  # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
-    pointer: ../images/cursor/reimu-cursor-pointer.png
-    text: ../images/cursor/reimu-cursor-text.png
+  enable: false
 
 icon_font: 4552607_ex15nbittbh
 
@@ -493,6 +490,7 @@ algolia_search:
 
 preloader:
   enable: true
+  style: ghost # ghost or comet
   text: 
     zh-CN: 少女祈祷中...
     zh-TW: 少女祈禱中...
@@ -500,7 +498,7 @@ preloader:
     ja: 少女祈祷中...
     pt-BR: Carregando...
   icon:   
-  rotate: true # whether to rotate the icon
+  rotate: false # whether to rotate the icon
 
 # see https://github.com/D-Sketon/aos.js
 animation:
@@ -576,8 +574,8 @@ top:
   enable: true
   position: right # left or right
   icon:
-    url: "../images/taichi.png" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
-    rotate: true
+    url: "../images/pixel-ghost.svg" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
+    rotate: false
     mask: true # whether to use the images as a mask
 
 # whether to display the notification when the article is outdated
@@ -611,8 +609,8 @@ sponsor:
     ja: コーヒーを買ってください
     pt-BR: Compre-me um café
   icon:
-    url: "../images/taichi.png" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
-    rotate: true
+    url: "../images/pixel-ghost.svg" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
+    rotate: false
     mask: true # whether to use the images as a mask
   qr:
     # - name: 支付宝
@@ -782,3 +780,19 @@ internal_theme:
     --highlight-deletion-bg: "#490202"
     --highlight-addition: "#7ee787"
     --highlight-addition-bg: "#04260f"
+
+# Shared pixel meadow from background.html, beneath the regular blog layout.
+injector:
+  head_end: |
+    <link rel="stylesheet" href="/css/meadow.css">
+    <link rel="stylesheet" href="/css/comet-loader.css">
+    <link rel="stylesheet" href="/css/ghost-loader.css">
+    <link rel="stylesheet" href="/css/pixel-menu.css">
+    <link rel="stylesheet" href="/css/pixel-cursor.css">
+  body_begin: |
+    <canvas id="meadow-world" aria-hidden="true"></canvas>
+    <div class="meadow-veil" aria-hidden="true"></div>
+  body_end: |
+    <button id="meadow-pause" type="button" aria-label="Pause background animation" aria-pressed="false" title="Pause background animation">Ⅱ</button>
+    <script src="/js/meadow.js" defer></script>
+    <script src="/js/anime-cursor.js" defer></script>

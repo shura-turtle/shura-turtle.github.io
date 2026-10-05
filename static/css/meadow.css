@@ -1,0 +1,57 @@
+/* Decorative backdrop; article cards keep the theme's opaque surfaces. */
+#meadow-world,
+.meadow-veil {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+#meadow-world {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.meadow-veil {
+  background: linear-gradient(180deg, #f0f9fd40, #e3f4fb70 55%, #e3f4fb30);
+}
+[data-theme="dark"] .meadow-veil {
+  background: linear-gradient(180deg, #15263855, #15263880 55%, #15263845);
+}
+#wrap { background: transparent; }
+.mobile-nav-on #wrap { background: var(--color-background); }
+#footer { background: var(--color-wrap); }
+#meadow-pause {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-wrap);
+  color: var(--color-link);
+  font: 16px/1 monospace;
+  box-shadow: var(--shadow-card);
+}
+#meadow-pause:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 4px;
+}
+
+/* The header is part of the same uninterrupted meadow. */
+#header { background: transparent; }
+#logo,
+#subtitle {
+  color: #203953;
+  text-shadow: 0 1px 10px #f0f9fd80;
+}
+[data-theme="dark"] #logo,
+[data-theme="dark"] #subtitle {
+  color: #f0f9fd;
+  text-shadow: 0 2px 12px #152638b3;
+}
