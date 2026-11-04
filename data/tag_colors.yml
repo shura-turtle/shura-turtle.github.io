@@ -1,0 +1,8 @@
+# Tag names are matched in lowercase. Use six-digit hex colors.
+# Add any custom tag here; unknown tags use the neutral fallback.
+rev: '#b91c1c'
+pwn: '#1d4ed8'
+web: '#c2410c'
+crypto: '#7e22ce'
+forensics: '#0f766e'
+misc: '#475569'

@@ -1,0 +1,17 @@
+{{- $tags := .GetTerms "tags" -}}
+{{- $difficulty := lower (strings.TrimSpace (.Params.difficulty | default "")) -}}
+{{- $hasDifficulty := in (slice "easy" "medium" "hard") $difficulty -}}
+{{- if or $tags $hasDifficulty -}}
+<div class="writeup-tags" aria-label="Challenge difficulty and tags">
+  {{- if $hasDifficulty -}}
+    <span class="writeup-tag writeup-difficulty difficulty-{{ $difficulty }}" aria-label="Difficulty: {{ $difficulty }}">{{ $difficulty }}</span>
+  {{- end -}}
+  {{- range $tags -}}
+    {{- $color := index hugo.Data.tag_colors (lower .LinkTitle) | default "#475569" -}}
+    {{- if not (findRE `^#[0-9a-fA-F]{6}$` $color) -}}
+      {{- $color = "#475569" -}}
+    {{- end -}}
+    <a class="writeup-tag" href="{{ .RelPermalink }}" rel="tag" style="{{ printf "--tag-color: %s" $color | safeCSS }}">{{ .LinkTitle }}</a>
+  {{- end -}}
+</div>
+{{- end -}}

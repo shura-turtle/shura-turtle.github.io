@@ -2,6 +2,12 @@ baseURL = 'https://shura-turtle.github.io/'
 locale = 'en'
 title = 'shura-turtle'
 theme = 'hugo-theme-reimu'
+capitalizeListTitles = false
+
+[taxonomies]
+tag = 'tags'
+category = 'categories'
+event = 'events'
 
 defaultContentLanguage = 'en'
 [languages]

@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <div class="event-browser event-page-header">
+    <nav aria-label="Event navigation">
+      <a class="event-back-link" href="{{ "events/" | relLangURL }}"><span aria-hidden="true">←</span> All events</a>
+    </nav>
+    <h2>{{ .Title }}</h2>
+    {{ with .Content }}<div class="event-description">{{ . }}</div>{{ end }}
+  </div>
+  {{ $paginator := .Paginate .RegularPages.ByDate.Reverse }}
+  {{ range $index, $page := $paginator.Pages }}
+    {{ partial "post.html" (dict "index" $index "ctx" $ "page" $page) }}
+  {{ end }}
+  {{ partial "pagination.html" . }}
+{{ end }}

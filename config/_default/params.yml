@@ -11,6 +11,9 @@ menu:
   - name: archives
     url: "archives"
     icon: "images/menu/archives.svg"
+  - name: events
+    url: "events"
+    icon: "images/menu/archives.svg"
   - name: about
     url: "about"
     icon: "images/menu/about.svg"
@@ -784,6 +787,8 @@ internal_theme:
 # Shared pixel meadow from background.html, beneath the regular blog layout.
 injector:
   head_end: |
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap">
+    <link rel="stylesheet" href="/css/writeups.css">
     <link rel="stylesheet" href="/css/meadow.css">
     <link rel="stylesheet" href="/css/comet-loader.css">
     <link rel="stylesheet" href="/css/ghost-loader.css">

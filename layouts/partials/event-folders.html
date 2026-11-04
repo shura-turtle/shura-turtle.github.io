@@ -1,0 +1,25 @@
+<section class="event-browser" aria-label="Writeups by event">
+  <div class="event-browser-heading">
+    <span class="event-heading-charm" aria-hidden="true">✧</span>
+    <h2>CTF events</h2>
+    <span class="event-heading-sparkles" aria-hidden="true">✦ ˚</span>
+  </div>
+  <div class="event-folders">
+    {{ range .Site.Taxonomies.events.Alphabetical }}
+    <a class="event-folder" href="{{ .Page.RelPermalink }}">
+      <span class="event-folder-art">
+        <img class="event-anime-cover" src="{{ .Page.Params.cover | default "images/covers/bg20.webp" | relURL }}" alt="" loading="lazy" width="800" height="600">
+        <span class="event-folder-tab" aria-hidden="true">✦ COLLECTION</span>
+        <span class="event-sticker" aria-hidden="true">{{ .Page.Params.emoji | default "🌸" }}</span>
+        <span class="event-art-sparkle" aria-hidden="true">✧</span>
+      </span>
+      <span class="event-folder-details">
+        <span class="event-folder-title">{{ .Page.LinkTitle }}</span>
+        <span class="event-folder-bottom"><span class="event-count">{{ .Count }} {{ if eq .Count 1 }}writeup{{ else }}writeups{{ end }}</span><span class="event-open" aria-hidden="true">Explore <span>↗</span></span></span>
+      </span>
+    </a>
+    {{ else }}
+    <div class="event-empty"><span aria-hidden="true">🌸</span><p>Your next adventure starts here.</p><small>No event writeups yet.</small></div>
+    {{ end }}
+  </div>
+</section>

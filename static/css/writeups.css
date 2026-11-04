@@ -1,0 +1,95 @@
+.event-browser {
+  --event-paper: #fffafd;
+  --event-ink: #423a59;
+  --event-muted: #786b87;
+  --event-line: #e9dbef;
+  --event-accent: #9160aa;
+  padding: 26px;
+  margin-bottom: 28px;
+  background: var(--color-wrap);
+  border: 1px solid var(--event-line);
+  border-radius: 22px;
+  box-shadow: var(--shadow-card);
+}
+[data-theme="dark"] .event-browser {
+  --event-paper: #29283c;
+  --event-ink: #f5eafa;
+  --event-muted: #c1b4ce;
+  --event-line: #4b405d;
+  --event-accent: #dfb5f0;
+}
+.event-browser-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+.event-browser h2 { margin: 0; color: var(--event-ink); font-family: 'Nunito', ui-rounded, sans-serif; font-size: 1.25rem; font-weight: 800; letter-spacing: .01em; }
+.event-page-header { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+.event-back-link { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border: 1px solid var(--event-line); border-radius: 10px; background: var(--event-paper); color: var(--event-muted); font: 600 13px/1.5 'Nunito', sans-serif; text-decoration: none; }
+.event-back-link:hover { color: var(--event-ink); border-color: var(--event-muted); }
+.event-back-link:focus-visible { outline: 2px solid var(--event-accent); outline-offset: 3px; }
+.event-description { width: 100%; color: var(--event-ink); line-height: 1.8; overflow-wrap: anywhere; }
+.event-description > :first-child { margin-top: 0; }
+.event-description > :last-child { margin-bottom: 0; }
+.event-heading-charm { font-size: 30px; color: var(--event-accent); }
+.event-heading-sparkles { margin-left: auto; color: var(--event-accent); font-size: 22px; }
+.event-folders { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 235px), 1fr)); gap: 24px; }
+.event-folder { display: block; min-width: 0; border: 1px solid var(--event-line); border-radius: 18px; background: var(--event-paper); color: var(--event-ink); box-shadow: 0 5px 0 var(--event-line); text-decoration: none !important; transition: transform .22s ease, box-shadow .22s ease; }
+.event-folder-art { display: block; position: relative; height: 162px; margin: 7px 7px 0; border-radius: 12px; background: #e9def0; }
+.event-anime-cover { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; border-radius: inherit; }
+.event-folder-tab { position: absolute; top: 12px; left: -8px; padding: 6px 12px; border-radius: 0 8px 8px 0; background: #f9e8f6; color: #725279; font: 700 10px/1.4 monospace; letter-spacing: .12em; box-shadow: 2px 3px 10px #30203e20; }
+.event-sticker { position: absolute; bottom: -17px; right: 14px; display: grid; place-items: center; width: 48px; height: 48px; border: 3px solid var(--event-paper); border-radius: 16px; background: var(--event-paper); box-shadow: 0 3px 10px #30203e25; font-size: 29px; transform: rotate(9deg); transition: transform .22s ease; }
+.event-art-sparkle { position: absolute; bottom: 10px; left: 12px; font-size: 28px; color: white; text-shadow: 0 1px 8px #74528b; }
+.event-folder-details { display: block; padding: 24px 18px 18px; }
+.event-folder-title {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0 3px 3px;
+  color: #685b72;
+  font-family: 'Nunito', ui-rounded, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+[data-theme="dark"] .event-folder-title { color: #d5c8dd; }
+.event-folder-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+.event-count { color: var(--event-muted); font-size: 12px; }
+.event-open { color: var(--event-accent); font-size: 12px; font-weight: 700; }
+.event-open > span { display: inline-block; margin-left: 4px; transition: transform .22s ease; }
+.event-folder:is(:hover, :focus-visible) { transform: translateY(-5px); box-shadow: 0 10px 0 var(--event-line), 0 16px 28px #56407316; }
+.event-folder:is(:hover, :focus-visible) .event-sticker { transform: rotate(-8deg) translateY(-3px); }
+.event-folder:is(:hover, :focus-visible) .event-open > span { transform: translate(2px, -2px); }
+.event-empty { grid-column: 1 / -1; padding: 28px 16px; text-align: center; border: 1px dashed var(--event-line); border-radius: 16px; background: var(--event-paper); color: var(--event-muted); }
+.event-empty > span { display: block; font-size: 42px; }
+.event-empty p { margin: 12px 0 4px; color: var(--event-ink); }
+@media (max-width: 480px) { .event-browser { padding: 18px; } .event-folders { gap: 20px; } }
+@media (prefers-reduced-motion: reduce) { .event-folder, .event-sticker, .event-open > span { transition: none; } .event-folder:is(:hover, :focus-visible), .event-folder:is(:hover, :focus-visible) .event-sticker, .event-folder:is(:hover, :focus-visible) .event-open > span { transform: none; } }
+.writeup-tags { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; }
+.writeup-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 7px 12px;
+  border: 1px solid #ffffff18;
+  border-radius: 9px;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--tag-color) 30%, #55535a),
+    color-mix(in srgb, var(--tag-color) 22%, #302e35));
+  color: #f5f1eb;
+  font: 600 12px/1.5 'Nunito', sans-serif;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+[data-theme="dark"] .writeup-tag {
+  border-color: #ffffff20;
+}
+.writeup-tag:hover { text-decoration: underline; }
+.difficulty-easy { --tag-color: #638873; }
+.difficulty-medium { --tag-color: #b28a51; }
+.difficulty-hard { --tag-color: #a85e64; }
+.writeup-difficulty:hover { text-decoration: none; }
+.writeup-tag:focus-visible, .event-folder:focus-visible { outline: 3px solid var(--color-link); outline-offset: 3px; }
+.post-info > .writeup-tags { position: relative; z-index: 2; margin: 4px 0 12px; pointer-events: none; }
+.post-info > .writeup-tags a { pointer-events: auto; }
+.article-inner > .writeup-tags { padding: 20px 24px 8px; }
+.writeup-events { display: flex; flex-wrap: wrap; gap: 12px; padding: 12px 20px; }
