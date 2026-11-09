@@ -53,6 +53,10 @@ immediately before the tags: `easy rev`, `medium rev`, or `hard rev`.
 Easy is sage, medium is warm amber, and hard is burgundy. Leave difficulty empty or omit
 it to hide the badge. This works on post cards and article panels.
 
+Event pages automatically sort writeups by difficulty: easy, medium, hard,
+then writeups without a recognized difficulty. Within each level, newest
+writeups appear first. Sorting applies before pagination.
+
 Edit `data/tag_colors.yml` to set your own tag colors:
 
 ```yaml

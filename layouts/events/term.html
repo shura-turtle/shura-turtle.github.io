@@ -6,7 +6,21 @@
     <h2>{{ .Title }}</h2>
     {{ with .Content }}<div class="event-description">{{ . }}</div>{{ end }}
   </div>
-  {{ $paginator := .Paginate .RegularPages.ByDate.Reverse }}
+  {{ $ordered := slice }}
+  {{ $levels := slice "easy" "medium" "hard" "" }}
+  {{ $pages := .RegularPages.ByDate.Reverse }}
+  {{ range $level := $levels }}
+    {{ range $pages }}
+      {{ $difficulty := lower (strings.TrimSpace (.Params.difficulty | default "")) }}
+      {{ if not (in (slice "easy" "medium" "hard") $difficulty) }}
+        {{ $difficulty = "" }}
+      {{ end }}
+      {{ if eq $difficulty $level }}
+        {{ $ordered = $ordered | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ $paginator := .Paginate $ordered }}
   {{ range $index, $page := $paginator.Pages }}
     {{ partial "post.html" (dict "index" $index "ctx" $ "page" $page) }}
   {{ end }}
