@@ -298,7 +298,7 @@ result = (void *)strncmp(a1: (int)v7, s: v6, a3: 10);
 
 ![image](/images/bombslanded/4.png)
 
-exports မှာရှိနေတယ် အဲ့တော့ strncmp က ကိုယ်တိုင်ရေးထားတဲ့ functions ဖြစ်နေတာပေါ့ libc.so.6 ကနေတန်းယူထားတာ
+exports မှာရှိနေတယ် အဲ့တော့ strncmp က ကိုယ်တိုင်ရေးထားတဲ့ functions ဖြစ်နေတာပေါ့ libc.so.6 ကနေတန်းယူထားတာ မဟုတ်ပဲနဲ့ 
 
 ```c
 int __cdecl strncmp(int a1, char *s, int a3)
