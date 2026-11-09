@@ -1,5 +1,5 @@
 +++
-date = '2026-11-04T19:40:29+06:30'
+date = '2026-11-09T16:13:39+06:30'
 draft = false
 title = 'Bombs Landed'
 events = ['Reversing Tracks'] # Example: ['eCTF 2026']
