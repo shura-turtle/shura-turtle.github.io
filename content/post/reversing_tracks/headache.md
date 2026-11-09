@@ -205,7 +205,7 @@ unsigned __int64 sub_13C1()
 }
 ```
 
-အဲ့လိုနဲ့ ကျနော်လည်း ဒီ function ကို flag function ထင်လိုက်တာပေါ့ အဲ့ဒီတော့က သူက functions တွေကို offset pointer နဲ့ခေါ်ထားတာပါ functions တွေကို သိချင်ရင်တော့ gdb မှာ dump ရပါတယ် dynamic ကျနော်ကတော့ dump တာမပြတော့ပါဘူး အဲ့ဒီတော့က 
+အဲ့လိုနဲ့ ကျနော်လည်း ဒီ function ကို flag function ထင်လိုက်တာပေါ့ အဲ့ဒီတော့က သူက functions တွေကို offset pointer နဲ့ခေါ်ထားတာပါ functions တွေကို  ကျနော်အပေါ်မှာ dumps ပြထားတဲ့ဟာနဲ့ offset_**** တို့ကို ဆက်စပ်ပြီးတော့ rename ပြန်လုပ်ပြီးတော့ code ဖတ်လို့လွယ်အောင် ပြင်လို့ရပါတယ်  
 
 ```c
  for ( j = 0; j <= 19; ++j )
