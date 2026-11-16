@@ -1,6 +1,6 @@
 +++
 date = '2026-11-15T14:06:10+06:30'
-title = 'attacking-pivoting'
+title = 'pivoting'
 cover = '/images/covers/12.jpg'
 +++
 
